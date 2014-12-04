@@ -1,0 +1,7 @@
+AWS Settings;
+
+make sure to chmod 400 the .pem key
+
+IP address is 54.149.119.218
+
+ssh using ssh -i 581_AWS_Ubtuntu14.pem ubuntu@54.149.119.218
