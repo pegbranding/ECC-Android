@@ -11,24 +11,33 @@ $client = new SoapClient(ENDPOINT, array('login'=>USERNAME,
 
 
 $result = $client->__getFunctions();
-$repid = $client->runReport('d8c9bdb2be720479177a1516c5254986');
+//$repid = $client->runReport('d8c9bdb2be720479177a1516c5254986');
 
-echo "<reportid>";
-print_r($repid);
-echo "</reportid>";
+//echo "<reportid>";
+//print_r($repid);
+//echo "</reportid>";
 
 echo "<pre>";
 print_r($result);
 echo "</pre>";
 
-$check = $client->checkReportRun('a293e1079e87572ec27e6e0b896d8695');
-$tabresult = $client->getReportData('a293e1079e87572ec27e6e0b896d8695');
+$check = $client->checkReportRun('c7a85a708e0eef22c780fad27c0d8f10');
+$tabresult = $client->getReportData('c7a85a708e0eef22c780fad27c0d8f10');
 
-echo "<tab>";
-print_r($check);
-echo "@@";
-print_r($tabresult);
-echo "</tab>";
+
+
+//print($tabresult);
+$myArray = explode(',', $tabresult);
+$max = sizeof($myArray);
+echo "MAX $max";
+
+for ($i=0; $i<$max; $i++) {
+    echo "$myArray[$i]\n";
+}
+
+
+//print_r($check);
+//echo "@@";
 
 ?>
 
