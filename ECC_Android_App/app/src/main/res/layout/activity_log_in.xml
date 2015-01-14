@@ -74,8 +74,7 @@
             android:textColor="#CD950C"
             android:textColorLink="#FF7256"
             android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/forgotPass_link"
-            android:layout_alignStart="@+id/forgotPass_link" />
+            android:layout_alignLeft="@+id/forgotPass_link" />
         <TextView
             android:id="@+id/forgotPass_link"
             android:layout_width="wrap_content"

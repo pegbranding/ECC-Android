@@ -1,4 +1,4 @@
-package com.example.jiaxiangli.ecc_android_app;
+package com.example.EECS_581.ecc_android_app;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

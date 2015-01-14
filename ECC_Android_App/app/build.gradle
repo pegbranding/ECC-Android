@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.example.jiaxiangli.ecc_android_app"
+        applicationId "com.example.EECS_581.ecc_android_app"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1

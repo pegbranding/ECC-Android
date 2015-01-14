@@ -1,4 +1,4 @@
-package com.example.jiaxiangli.ecc_android_app;
+package com.example.EECS_581.ecc_android_app;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,7 +36,7 @@ public class LogIn extends Activity implements View.OnClickListener {
     public void onClick(View v){
         switch(v.getId()){
             case R.id.login_btn:
-                Intent homePageAct=new Intent(v.getContext(),HomePage.class);
+                Intent homePageAct=new Intent(v.getContext(),MainActivity.class);
                 startActivity(homePageAct);
                 break;
 

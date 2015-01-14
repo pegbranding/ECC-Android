@@ -1,8 +1,7 @@
-package com.example.jiaxiangli.ecc_android_app;
+package com.example.EECS_581.ecc_android_app;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 
 /**
