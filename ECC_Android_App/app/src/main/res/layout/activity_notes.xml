@@ -7,6 +7,89 @@
     tools:context="com.example.EECS_581.ecc_android_app.Notes">
 
     <TextView android:text="@string/hello_world_notes" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1"
+        android:layout_below="@+id/textView2">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/make_new_note"
+                android:id="@+id/make_new_note_button"
+                android:layout_column="1"
+                android:layout_span="2" />
+        </TableRow>
+
+        <!-- This row is only present at the moment to prevent
+        Android Studio from complaining. -->
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Save..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-S"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <!--
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Save As..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-Shift-S"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:text="X"
+                android:padding="3dip" />
+            <TextView
+                android:text="Import..."
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="X"
+                android:padding="3dip" />
+            <TextView
+                android:text="Export..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-E"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Quit"
+                android:padding="3dip" />
+        </TableRow>
+        -->
+    </TableLayout>
 
 </RelativeLayout>

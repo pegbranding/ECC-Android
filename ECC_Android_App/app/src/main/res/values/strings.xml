@@ -20,4 +20,18 @@
     <string name="title_activity_map">Map</string>
     <string name="title_activity_notes">Notes</string>
 
+    <!-- Notes Tab Strings -->
+
+    <string name="make_new_note">Make a new note</string>
+
+    <!-- ComposeNote Sub-activity Strings -->
+
+    <string name="note_title">Note Title:</string>
+    
+    <!-- End ComposeNote Subactivity Strings -->
+
+    <!-- End Notes Tab Strings -->
+
+
+
 </resources>
