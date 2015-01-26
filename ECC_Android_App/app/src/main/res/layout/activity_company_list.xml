@@ -7,6 +7,14 @@
     tools:context="com.example.EECS_581.ecc_android_app.CompanyList">
 
     <TextView android:text="@string/hello_world_list" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView" />
 
 </RelativeLayout>

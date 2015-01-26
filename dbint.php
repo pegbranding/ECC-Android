@@ -25,15 +25,17 @@ $check = $client->checkReportRun('c7a85a708e0eef22c780fad27c0d8f10');
 $tabresult = $client->getReportData('c7a85a708e0eef22c780fad27c0d8f10');
 
 
-
 //print($tabresult);
-$myArray = explode(',', $tabresult);
+$myArray = explode(',', $tabresult,2);
 $max = sizeof($myArray);
 echo "MAX $max";
+echo "Value of myarr is $myArray[0] ";
+$tabresult = $myArray[1];
+echo "\n\n NEW TABRESULT \n\n $tabresult ";
 
-for ($i=0; $i<$max; $i++) {
-    echo "$myArray[$i]\n";
-}
+//for ($i=0; $i<$max; $i++) {
+//    echo "$myArray[$i]   -- NEWLINE \n";
+//}
 
 
 //print_r($check);
