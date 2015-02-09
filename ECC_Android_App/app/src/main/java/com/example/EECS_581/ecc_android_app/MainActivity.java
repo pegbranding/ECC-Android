@@ -1,41 +1,152 @@
 package com.example.EECS_581.ecc_android_app;
 
+import android.app.Activity;
 import android.app.ActivityGroup;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.MyPagerAdapter;
 
 
-public class MainActivity extends ActivityGroup {
+public class MainActivity extends Activity{
 
-    TabHost tabHost;
+    //The ViewPager content
+    private ViewPager mPager;
+
+    //Tab list
+    private List<View> listViews;
+
+    private ImageView cursor;
+
+    private TextView t1,t2,t3;
+
+    private int offset=0;
+
+    private  int currIndex=0;
+
+    private int bmpW;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        InitImageView();
+        InitTextView();
+        InitViewPager();
 
-        tabHost = (TabHost) findViewById(R.id.tabHost);
+    }
 
-        tabHost.setup(getLocalActivityManager());
 
-        TabHost.TabSpec tabSpec1 = tabHost.newTabSpec("List");
-        tabSpec1.setIndicator("List");
-        Intent listIntent = new Intent(this, CompanyList.class);
-        tabSpec1.setContent(listIntent);
-        tabHost.addTab(tabSpec1);
+    private void InitTextView(){
+        t1 = (TextView) findViewById(R.id.text1);
+        t2 = (TextView) findViewById(R.id.text2);
+        t3 = (TextView) findViewById(R.id.text3);
+        t1.setOnClickListener(new MyOnClickListener(0));
+        t2.setOnClickListener(new MyOnClickListener(1));
+        t3.setOnClickListener(new MyOnClickListener(2));
+    }
 
-        TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("Map");
-        tabSpec2.setIndicator("Map");
-        Intent mapIntent = new Intent(this, Map.class);
-        tabSpec2.setContent(mapIntent);
-        tabHost.addTab(tabSpec2);
+    private void InitViewPager() {
+        mPager = (ViewPager) findViewById(R.id.vPager);
+        listViews = new ArrayList<View>();
+        LayoutInflater mInflater = getLayoutInflater();
+        listViews.add(mInflater.inflate(R.layout.activity_company_list, null));
+        listViews.add(mInflater.inflate(R.layout.activity_map, null));
+        listViews.add(mInflater.inflate(R.layout.activity_compose_note, null));
+        mPager.setAdapter(new MyPagerAdapter(listViews));
+        mPager.setCurrentItem(0);
+        mPager.setOnPageChangeListener(new MyOnPageChangeListener());
+    }
 
-        TabHost.TabSpec tabSpec3 = tabHost.newTabSpec("Notes");
-        tabSpec3.setIndicator("Notes");
-        Intent notesIntent = new Intent(this, Notes.class);
-        tabSpec3.setContent(notesIntent);
-        tabHost.addTab(tabSpec3);
+    private void InitImageView() {
+        cursor = (ImageView) findViewById(R.id.cursor);
+        bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a)
+                .getWidth();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int screenW = dm.widthPixels;
+        offset = (screenW / 3 - bmpW) / 2;
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(offset, 0);
+        cursor.setImageMatrix(matrix);
+    }
 
+    public class MyOnClickListener implements View.OnClickListener {
+        private int index = 0;
+
+        public MyOnClickListener(int i) {
+            index = i;
+        }
+
+        @Override
+        public void onClick(View v) {
+            mPager.setCurrentItem(index);
+        }
+    };
+
+    public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        int one = offset * 2 + bmpW;
+        int two = one * 2;
+        @Override
+        public void onPageSelected(int arg0) {
+            Animation animation = null;
+            switch (arg0) {
+                case 0:
+                    if (currIndex == 1) {
+                        animation = new TranslateAnimation(one, 0, 0, 0);
+                    } else if (currIndex == 2) {
+                        animation = new TranslateAnimation(two, 0, 0, 0);
+                    }
+                    break;
+                case 1:
+                    if (currIndex == 0) {
+                        animation = new TranslateAnimation(offset, one, 0, 0);
+                    } else if (currIndex == 2) {
+                        animation = new TranslateAnimation(two, one, 0, 0);
+                    }
+                    break;
+                case 2:
+                    if (currIndex == 0) {
+                        animation = new TranslateAnimation(offset, two, 0, 0);
+                    } else if (currIndex == 1) {
+                        animation = new TranslateAnimation(one, two, 0, 0);
+                    }
+                    break;
+            }
+            currIndex = arg0;
+            animation.setFillAfter(true);
+            animation.setDuration(300);
+            cursor.startAnimation(animation);
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
     }
 }
