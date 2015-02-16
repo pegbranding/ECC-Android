@@ -5,3 +5,9 @@ make sure to chmod 400 the .pem key
 IP address is 54.149.119.218
 
 ssh using ssh -i 581_AWS_Ubtuntu14.pem ubuntu@54.149.119.218
+
+
+Can view default apache page @ http://54.149.119.218
+
+mongodb --rest interface is at http://54.149.119.218:28017 (mongodb is @
+27017)
