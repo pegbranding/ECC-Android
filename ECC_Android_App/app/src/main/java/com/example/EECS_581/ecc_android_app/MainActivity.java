@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -30,13 +33,16 @@ import java.util.List;
 import adapter.MyPagerAdapter;
 
 
-public class MainActivity extends Activity{
+public class MainActivity extends FragmentActivity{
 
     //The ViewPager content
     private ViewPager mPager;
 
     //Tab list
     private List<View> listViews;
+
+    //Viewpager Fragments
+    private List<Fragment> viewPagerFragments = new ArrayList<Fragment>();
 
     private ImageView cursor;
 
@@ -51,9 +57,14 @@ public class MainActivity extends Activity{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         InitImageView();
         InitTextView();
-        InitViewPager();
+        if (savedInstanceState == null) {
+            mPager = (ViewPager) findViewById(R.id.vPager);
+            mPager.setCurrentItem(0);
+            InitViewPager();
+        }
 
     }
 
@@ -68,15 +79,20 @@ public class MainActivity extends Activity{
     }
 
     private void InitViewPager() {
-        mPager = (ViewPager) findViewById(R.id.vPager);
-        listViews = new ArrayList<View>();
-        LayoutInflater mInflater = getLayoutInflater();
-        listViews.add(mInflater.inflate(R.layout.activity_company_list, null));
-        listViews.add(mInflater.inflate(R.layout.activity_map, null));
-        listViews.add(mInflater.inflate(R.layout.activity_compose_note, null));
-        mPager.setAdapter(new MyPagerAdapter(listViews));
-        mPager.setCurrentItem(0);
+
+        Fragment firstPage = Fragment.instantiate(this, CompanyList.class.getName());
+        Fragment secondPage = Fragment.instantiate(this, Map.class.getName());
+        Fragment thirdPage = Fragment.instantiate(this, Notes.class.getName());
+
+        viewPagerFragments.add(firstPage);
+        viewPagerFragments.add(secondPage);
+        viewPagerFragments.add(thirdPage);
+
+        MyPageAdapter pageAdapter = new MyPageAdapter(getSupportFragmentManager(), viewPagerFragments);
+
+        mPager.setAdapter(pageAdapter);
         mPager.setOnPageChangeListener(new MyOnPageChangeListener());
+
     }
 
     private void InitImageView() {
@@ -112,6 +128,8 @@ public class MainActivity extends Activity{
         @Override
         public void onPageSelected(int arg0) {
             Animation animation = null;
+            mPager.setCurrentItem(arg0);
+
             switch (arg0) {
                 case 0:
                     if (currIndex == 1) {

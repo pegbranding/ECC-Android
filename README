@@ -11,3 +11,6 @@ Can view default apache page @ http://54.149.119.218
 
 mongodb --rest interface is at http://54.149.119.218:28017 (mongodb is @
 27017)
+
+
+sudo mongod --rest --fork --syslog
