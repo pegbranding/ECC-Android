@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ import java.util.List;
 import adapter.MyPagerAdapter;
 
 
-public class MainActivity extends Activity{
+public class MainActivity extends SlidingFragmentActivity{
 
     //The ViewPager content
     private ViewPager mPager;
@@ -47,14 +48,35 @@ public class MainActivity extends Activity{
     private  int currIndex=0;
 
     private int bmpW;
+    
+    private SlidingMenu leftContent;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setBehindContentView(R.layout.leftmenu);
+        initSlidingMenu();
         InitImageView();
         InitTextView();
         InitViewPager();
 
+    }
+
+
+    public void initSlidingMenu(){
+        leftContent=new SlidingMenu(this);
+        leftContent.setMode(SlidingMenu.LEFT);
+        leftContent.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        leftContent.setShadowWidthRes(R.dimen.shadow_width);
+        leftContent.setShadowDrawable(R.drawable.shadow);
+        leftContent.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        leftContent.setFadeDegree(0.35f);
+        //setContentView(R.layout.activity_main);
+        //setBehindContentView(R.layout.leftmenu);
+        leftContent.attachToActivity(this,SlidingMenu.SLIDING_CONTENT);
+        leftContent.setMenu(R.layout.leftmenu);
+
+        //leftMenu=new SlidingMenu(this);
     }
 
 
