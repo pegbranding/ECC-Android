@@ -6,10 +6,46 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.EECS_581.ecc_android_app.ComposeNote">
 
-    <TextView android:text="@string/hello_world_notes" android:layout_width="wrap_content"
+    <TextView android:text="@string/note_title" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/noteTitleTextView" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/noteTitleEditView"
+        android:layout_below="@+id/noteTitleTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/note_body"
+        android:id="@+id/noteBodyTextView"
+        android:layout_below="@+id/noteTitleEditView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/noteTitleEditView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/noteBodyEditView"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/saveNoteButton"
+        android:layout_alignRight="@+id/saveNoteButton"
+        android:layout_below="@+id/noteBodyTextView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_note"
+        android:id="@+id/saveNoteButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/noteTitleEditView" />
 
 
 </RelativeLayout>

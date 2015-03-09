@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,8 +27,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.example.EECS_581.ecc_android_app.R.layout.activity_company_list;
 
-public class Notes extends Activity {
+public class Notes extends Fragment {
 
     //=-=-=-=-=- Class Variable Definitions =-=-=-=-=-
     //Each of these is initialized via the initializeNotesClass() method below. All lone Strings
@@ -52,13 +57,17 @@ public class Notes extends Activity {
     ListView notesListView;//TODO finish!
     ArrayList<String> notesList;//The ArrayList containing the actual notes themselves.
 
+    View notesView;//The View for this portion of the activity, allowing Fragment compatibility.
+
     //=-=-=-=-=- /Class Variable Definitions =-=-=-=-=-
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes);
+        notesView = inflater.inflate(R.layout.activity_notes,container,false);
         initializeNotesClass();
+        return notesView;
     }
 
     /* A helper function to the class to initialize all utilized class variables. Intended for call
@@ -73,17 +82,18 @@ public class Notes extends Activity {
         noteArchiveFilename = getResources().getString(R.string.noteArchiveFilename);
 
         //Then get each of the relevant XML elements,
-        notesViewFlipper = (ViewFlipper)findViewById(R.id.notesViewFlipper);
+        notesViewFlipper = (ViewFlipper) notesView.findViewById(R.id.notesViewFlipper);//TODO FIX
 
-        noteTitle = (EditText)findViewById(R.id.noteTitleEditView);
-        noteBody  = (EditText)findViewById(R.id.noteBodyEditView);
+        noteTitle = (EditText) notesView.findViewById(R.id.noteTitleEditView);
+        noteBody  = (EditText) notesView.findViewById(R.id.noteBodyEditView);
 
-        newNoteButton = (Button) findViewById(R.id.make_new_note_button);
-        saveNoteButton = (Button)findViewById(R.id.saveNoteButton);
-        discardDraftButton = (Button)findViewById(R.id.discardDraftButton);
+        newNoteButton = (Button) notesView.findViewById(R.id.make_new_note_button);
+        saveNoteButton = (Button) notesView.findViewById(R.id.saveNoteButton);
+        discardDraftButton = (Button) notesView.findViewById(R.id.discardDraftButton);
 
         //And build the empty note alert dialog.
-        AlertDialog.Builder emptyNoteADB = new AlertDialog.Builder(this);
+        AlertDialog.Builder emptyNoteADB = new AlertDialog.Builder(
+                getActivity().getApplicationContext());
         emptyNoteADB.setTitle(R.string.emptyNoteDialogTitle);
         emptyNoteADB.setMessage(R.string.emptyNoteDialogMessage);
         emptyNoteADB.setNegativeButton(R.string.emptyNoteDialogOK,
@@ -95,7 +105,7 @@ public class Notes extends Activity {
                 });
         emptyNoteAlert = emptyNoteADB.create();
 
-        notesListView = (ListView)findViewById(R.id.notesListView);
+        notesListView = (ListView)notesView.findViewById(R.id.notesListView);
 
 
         //Setting the action of the Make New Note Button.
@@ -104,7 +114,8 @@ public class Notes extends Activity {
 
                 //First, set the View to the composeNote portion.
                 notesViewFlipper.setDisplayedChild(
-                        notesViewFlipper.indexOfChild(findViewById(R.id.composeNoteScreen)));
+                        notesViewFlipper.indexOfChild(
+                                notesView.findViewById(R.id.composeNoteScreen)));
 
                 /*
                 //3. Exit back to this activity (also in CN), showing the new note in the list!
@@ -140,7 +151,8 @@ public class Notes extends Activity {
 
                     //Set the View to the notesList portion.
                     notesViewFlipper.setDisplayedChild(
-                            notesViewFlipper.indexOfChild(findViewById(R.id.notesListScreen)));
+                            notesViewFlipper.indexOfChild(
+                                    notesView.findViewById(R.id.notesListScreen)));
                 }
             }
         });
@@ -154,20 +166,21 @@ public class Notes extends Activity {
 
                 //Switch back to the notesList portion without saving.
                 notesViewFlipper.setDisplayedChild(
-                        notesViewFlipper.indexOfChild(findViewById(R.id.notesListScreen)));
+                        notesViewFlipper.indexOfChild(
+                                notesView.findViewById(R.id.notesListScreen)));
             }
         });
-
         //Also complete the initial note list refresh.
         refreshNotesList();
     }
 
-    @Override
+    /*
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_notes, menu);
+        getActivity().getMenuInflater().inflate(R.menu.menu_notes, menu);
         return true;
     }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -192,7 +205,7 @@ public class Notes extends Activity {
 
         if(notesList != null){//If notes exist, proceed to populate the list.
             ArrayAdapter<String> notesArrayAdapter = new ArrayAdapter<String>(
-                    Notes.this,
+                    getActivity().getApplicationContext(),
                     android.R.layout.simple_list_item_1,
                     notesList);
             notesListView.setAdapter(notesArrayAdapter);
@@ -228,7 +241,9 @@ public class Notes extends Activity {
      */
     void saveNoteRecord(String title, String body){
         try{
-            FileOutputStream noteArchiveOutput = openFileOutput(noteArchiveFilename,MODE_APPEND);
+            FileOutputStream noteArchiveOutput =
+                    getActivity().getApplicationContext().openFileOutput(
+                            noteArchiveFilename,getActivity().getApplicationContext().MODE_APPEND);
 
             //First cleanse note data of | symbols, which could cause errors in note handling else
             //where.
@@ -267,7 +282,8 @@ public class Notes extends Activity {
         ArrayList<String> listOfNotes = null;
         try{
             listOfNotes = new ArrayList<String>();
-            FileInputStream noteArchiveInput = openFileInput(noteArchiveFilename);
+            FileInputStream noteArchiveInput =
+                    getActivity().getApplicationContext().openFileInput(noteArchiveFilename);
 
             //First obtain the whole note archive.
             //TODO replace this code with more efficient reading code?
