@@ -1,12 +1,108 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.EECS_581.ecc_android_app.Map">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/myLayout"
+    tools:context="com.example.EECS_581.ecc_android_app.Map"
+    android:background="@drawable/background_login">
 
-    <TextView android:text="@string/hello_world_map" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
+    <ViewFlipper
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/eccflipper">
+
+        <RelativeLayout
+            android:id="@+id/Floor4Layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/floor4image"
+                android:src="@drawable/floor4"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Floor5Big12Layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/big12floor5image"
+                android:src="@drawable/big12floor5"/>
+        </RelativeLayout>
+
+        <requestFocus />
+
+        <RelativeLayout
+            android:id="@+id/Floor5BallroomLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/ballroomfloor5image"
+                android:src="@drawable/ballroomfloor5"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Floor6MalottLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/malottroomfloor6image"
+                android:src="@drawable/malottroomfloor6"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Floor6KansasLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/kansasroomfloor6image"
+                android:src="@drawable/kansasroomfloor6"/>
+        </RelativeLayout>
+
+    </ViewFlipper>
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=">"
+        android:id="@+id/nextbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&lt;"
+        android:id="@+id/previousbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/nextbutton"
+        android:layout_toRightOf="@+id/previousbutton"
+        android:indeterminate="false" />
 </RelativeLayout>
