@@ -82,7 +82,7 @@ public class Notes extends Fragment {
         noteArchiveFilename = getResources().getString(R.string.noteArchiveFilename);
 
         //Then get each of the relevant XML elements,
-        notesViewFlipper = (ViewFlipper) notesView.findViewById(R.id.notesViewFlipper);//TODO FIX
+        notesViewFlipper = (ViewFlipper) notesView.findViewById(R.id.notesViewFlipper);
 
         noteTitle = (EditText) notesView.findViewById(R.id.noteTitleEditView);
         noteBody  = (EditText) notesView.findViewById(R.id.noteBodyEditView);
@@ -209,21 +209,38 @@ public class Notes extends Fragment {
                     android.R.layout.simple_list_item_1,
                     notesList);
             notesListView.setAdapter(notesArrayAdapter);
+            notesArrayAdapter.toString();
 
             notesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String note = notesList.get(position);//First, get the whole note.
 
+                    //Then split it into its component Title and Body.
+                    String thisNoteTitle = note.substring(2,note.lastIndexOf(separator));
+                    String thisNoteBody = note.substring(note.indexOf(separator)+2,note.length());
 
+                    //Then set the text of the note.
+                    noteTitle.setText(thisNoteTitle);
+                    noteBody.setText(thisNoteBody);
 
+                    //Then switch to seeing the Note!
+                    notesViewFlipper.setDisplayedChild(
+                            notesViewFlipper.indexOfChild(
+                                    notesView.findViewById(R.id.composeNoteScreen)));
+                    //TODO revise this so that there is a simple "view note" screen, which includes
+                    //edit and delete buttons. Click edit, and go to composeNoteScreen. Click delete
+                    //and the note is deleted and the user switches back to notesListScreen.
+
+                    //TODO ALSO! Make sure that saveNote doesn't produce duplicates (as per above)!
                 }
             });
-            //TODO FINISH!
             //TODO FINISH!
             //TODO finish this method! Look to the following resources:
             //http://developer.android.com/guide/topics/ui/layout/listview.html
             //http://developer.android.com/guide/topics/ui/declaring-layout.html#AdapterViews
             //http://www.vogella.com/tutorials/AndroidListView/article.html
+            //http://www.learn-android-easily.com/2013/05/populating-listview-with-arraylist.html
 
         }
         else{
