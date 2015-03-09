@@ -2,22 +2,28 @@ package com.example.EECS_581.ecc_android_app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+
+import static com.example.EECS_581.ecc_android_app.R.layout.activity_company_list;
 
 
-public class Notes extends Activity {
+public class Notes extends Fragment {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_notes, container, false);
         //Setting the action of the New Note Button.
-        final Button newNoteButton = (Button) findViewById(R.id.make_new_note_button);
+        final Button newNoteButton = (Button) view.findViewById(R.id.make_new_note_button);
         newNoteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
@@ -32,12 +38,14 @@ public class Notes extends Activity {
                 //3. Exit back to this Notes activity (this code), showing the new note in the list!
             }
         });
+        return view;
     }
 
-    @Override
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_notes, menu);
+        getActivity().getMenuInflater().inflate(R.menu.menu_notes, menu);
         return true;
     }
 
