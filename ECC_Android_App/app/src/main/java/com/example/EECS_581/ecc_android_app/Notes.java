@@ -217,8 +217,8 @@ public class Notes extends Fragment {
                     String note = notesList.get(position);//First, get the whole note.
 
                     //Then split it into its component Title and Body.
-                    String thisNoteTitle = note.substring(2,note.lastIndexOf(separator));
-                    String thisNoteBody = note.substring(note.indexOf(separator)+2,note.length());
+                    String thisNoteTitle = note.substring(3,note.lastIndexOf(separator));
+                    String thisNoteBody = note.substring(note.indexOf(separator)+3,note.length());
 
                     //Then set the text of the note.
                     noteTitle.setText(thisNoteTitle);
