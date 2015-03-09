@@ -11,17 +11,30 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.io.BufferedInputStream;
 import java.util.ArrayList;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.os.AsyncTask;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 import static com.example.EECS_581.ecc_android_app.R.layout.activity_company_list;
 
 
 public class CompanyList extends Fragment {
+    private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
+
     ArrayList<String> companyNameList = new ArrayList<String>();
+    private boolean setupList = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,9 +42,14 @@ public class CompanyList extends Fragment {
         View view = inflater.inflate(activity_company_list, container, false);
         ListView listView = (ListView) view.findViewById(R.id.companyListView);
 
-        companyNameList.add("AAAA");
-        companyNameList.add("BBBB");
-        Log.d("MyApp","@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        if (!setupList) {
+            companyNameList.add("AAAA");
+            companyNameList.add("BBBB");
+            Log.d("MyApp", "@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            setupList = true;
+        }
+
+        new CallAPI().execute();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, companyNameList);
         listView.setAdapter(adapter);
@@ -43,8 +61,8 @@ public class CompanyList extends Fragment {
                 int itemPosition = i;
                 String itemValue = (String) companyNameList.get(itemPosition);
 
-                //Toast.makeText(getApplicationContext(), "Position:"+itemPosition+" ListItem :"+itemValue,
-                //Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Position:"+itemPosition+" ListItem :"+itemValue,
+                    Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,5 +89,55 @@ public class CompanyList extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class CallAPI extends AsyncTask<String, String,String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            BufferedInputStream bufferedStream;
+
+            try {
+                URL url = new URL(restURL);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                bufferedStream = new BufferedInputStream(urlConnection.getInputStream());
+
+                InputStreamReader reader = new InputStreamReader(bufferedStream);
+                BufferedReader bufferedReader = new BufferedReader(reader);
+                StringBuilder builder = new StringBuilder();
+                String line = bufferedReader.readLine();
+                while (line != null) {
+                    builder.append(line);
+                    line = bufferedReader.readLine();
+                }
+
+                String result = builder.toString();
+                //System.out.println("LINE: " + result);
+                JSONObject topLevel = new JSONObject(result);
+
+                ArrayList<JSONObject> companiesList = new ArrayList<JSONObject>();
+
+                JSONArray arr = topLevel.getJSONArray("rows");
+
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject curCompany = (JSONObject) arr.get(i);
+                    String curCompanyName =  ((String) curCompany.get("company_name")).substring(1);
+                    System.out.println("ThisCompany Name; " + curCompany.get("company_name"));
+                }
+
+
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return e.getMessage();
+            }
+
+            return "";
+        }
+
+        protected void onPostExecute(String result) {
+
+        }
     }
 }
