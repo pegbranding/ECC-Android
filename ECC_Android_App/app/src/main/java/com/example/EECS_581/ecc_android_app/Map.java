@@ -2,14 +2,11 @@ package com.example.EECS_581.ecc_android_app;
 
 import android.gesture.Gesture;
 import android.support.v4.app.Fragment;
-<<<<<<< Updated upstream
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.GestureDetector;
-=======
 import android.support.v4.view.ViewCompat;
->>>>>>> Stashed changes
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;

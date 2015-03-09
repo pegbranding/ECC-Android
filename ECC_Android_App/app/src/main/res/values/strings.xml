@@ -22,6 +22,10 @@
 
     <!-- Notes Tab Strings -->
 
+    <string name="tab1_name">List</string>
+    <string name="tab2_name">Maps</string>
+    <string name="tab3_name">Notes</string>
+
     <string name="noteArchiveFilename">KU_ECC_App_noteArchive</string>
     <string name="noteRecordSeparator">|r|</string>
     <string name="noteSeparatorMarker">|s|</string>

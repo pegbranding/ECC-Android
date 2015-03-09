@@ -34,7 +34,6 @@ public class CompanyList extends Fragment {
     private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
 
     ArrayList<String> companyNameList = new ArrayList<String>();
-    private boolean setupList = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,12 +41,6 @@ public class CompanyList extends Fragment {
         View view = inflater.inflate(activity_company_list, container, false);
         ListView listView = (ListView) view.findViewById(R.id.companyListView);
 
-        if (!setupList) {
-            companyNameList.add("AAAA");
-            companyNameList.add("BBBB");
-            Log.d("MyApp", "@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            setupList = true;
-        }
 
         new CallAPI().execute();
 
@@ -123,7 +116,8 @@ public class CompanyList extends Fragment {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject curCompany = (JSONObject) arr.get(i);
                     String curCompanyName =  ((String) curCompany.get("company_name")).substring(1);
-                    System.out.println("ThisCompany Name; " + curCompany.get("company_name"));
+                    System.out.println("ThisCompany Name; " + curCompanyName);
+                    companyNameList.add(curCompanyName);
                 }
 
 
