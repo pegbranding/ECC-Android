@@ -6,90 +6,133 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.EECS_581.ecc_android_app.Notes">
 
-    <TextView android:text="@string/hello_world_notes" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+    <!-- For the below comments, VF == ViewFlipper. -->
+    <!-- Also, XML element data is ordered in the following fashion:
+        1. ID
+        2. Content (text, etc.)
+        3. Formatting (of content. Example: font size.)
+        4. Layout parameters.
+        -->
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:stretchColumns="1"
-        android:layout_below="@+id/textView2">
+    <ViewFlipper
+        android:id="@+id/notesViewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-        <TableRow
+        <!-- First VF element(notesList): see saved notes and a button to make new ones.-->
+        <RelativeLayout
+            android:id="@+id/notesListScreen"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <Button
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:stretchColumns="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <Button
+                        android:id="@+id/make_new_note_button"
+                        android:text="@string/make_new_note"
+                        android:layout_column="1"
+                        android:layout_span="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <!-- This ListView shows all saved notes. -->
+                    <ListView
+                        android:id="@+id/notesListView"
+                        android:layout_column="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+            </TableLayout>
+
+        </RelativeLayout>
+
+        <!-- Second VF element: compose a new note, and a save button.-->
+        <RelativeLayout
+            android:id="@+id/composeNoteScreen"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/noteTitleTextView"
+                android:text="@string/note_title"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/noteTitleEditView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/make_new_note"
-                android:id="@+id/make_new_note_button"
-                android:layout_column="1"
-                android:layout_span="2" />
-        </TableRow>
+                android:layout_below="@+id/noteTitleTextView" />
 
-        <!-- This row is only present at the moment to prevent
-        Android Studio from complaining. -->
-        <TableRow>
             <TextView
-                android:layout_column="1"
-                android:text="Save..."
-                android:padding="3dip" />
-            <TextView
-                android:text="Ctrl-S"
-                android:gravity="right"
-                android:padding="3dip" />
-        </TableRow>
-        <!--
-        <TableRow>
-            <TextView
-                android:layout_column="1"
-                android:text="Save As..."
-                android:padding="3dip" />
-            <TextView
-                android:text="Ctrl-Shift-S"
-                android:gravity="right"
-                android:padding="3dip" />
-        </TableRow>
+                android:id="@+id/noteBodyTextView"
+                android:text="@string/note_body"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/noteTitleEditView" />
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <EditText
+                android:id="@+id/noteBodyEditView"
+                android:gravity="top"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/saveNoteButton"
+                android:layout_below="@+id/noteBodyTextView" />
 
-        <TableRow>
-            <TextView
-                android:text="X"
-                android:padding="3dip" />
-            <TextView
-                android:text="Import..."
-                android:padding="3dip" />
-        </TableRow>
+            <Button
+                android:id="@+id/saveNoteButton"
+                android:text="@string/save_note"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/discardDraftButton" />
 
-        <TableRow>
-            <TextView
-                android:text="X"
-                android:padding="3dip" />
-            <TextView
-                android:text="Export..."
-                android:padding="3dip" />
-            <TextView
-                android:text="Ctrl-E"
-                android:gravity="right"
-                android:padding="3dip" />
-        </TableRow>
+            <Button
+                android:id="@+id/discardDraftButton"
+                android:text="@string/discard_draft"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
 
-        <TableRow>
-            <TextView
-                android:layout_column="1"
-                android:text="Quit"
-                android:padding="3dip" />
-        </TableRow>
-        -->
-    </TableLayout>
+        </RelativeLayout>
+
+        <!-- Third VF element(viewNote): see the full contents of a selected note, and an edit
+        button. -->
+
+        <RelativeLayout
+            android:id="@+id/viewNoteScreen"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <!-- TODO COMPLETE! -->
+
+        </RelativeLayout>
+
+    </ViewFlipper>
 
 </RelativeLayout>
