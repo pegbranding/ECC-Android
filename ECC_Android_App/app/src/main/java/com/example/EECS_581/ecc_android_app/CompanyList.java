@@ -34,17 +34,19 @@ public class CompanyList extends Fragment {
     private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
 
     ArrayList<String> companyNameList = new ArrayList<String>();
+    View view;
+    ArrayAdapter<String> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(activity_company_list, container, false);
+        view = inflater.inflate(activity_company_list, container, false);
         ListView listView = (ListView) view.findViewById(R.id.companyListView);
 
 
         new CallAPI().execute();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, companyNameList);
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, companyNameList);
         listView.setAdapter(adapter);
 
 
@@ -131,6 +133,8 @@ public class CompanyList extends Fragment {
         }
 
         protected void onPostExecute(String result) {
+            ListView listView = (ListView) view.findViewById(R.id.companyListView);
+            adapter.notifyDataSetChanged();
 
         }
     }
