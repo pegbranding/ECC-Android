@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-26627b3afc92b205e7c2e6f811437acda49bbcf4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ECC_Android_App/app/build/intermediates/pre-dexed/debug/support-v4-13.0.0-04f12f6f67ace50605afa6c2c2a47be5fc91b33d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

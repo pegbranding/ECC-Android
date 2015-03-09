@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/ncolom/EECS/582Proj/ecc-senior-design-project/ECC_Android_App/libraries/SlidingMenu/assets"/></dataSet><dataSet config="debug"><source path="/home/ncolom/EECS/582Proj/ecc-senior-design-project/ECC_Android_App/libraries/SlidingMenu/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\libraries\SlidingMenu\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\libraries\SlidingMenu\src\debug\assets"/></dataSet></merger>

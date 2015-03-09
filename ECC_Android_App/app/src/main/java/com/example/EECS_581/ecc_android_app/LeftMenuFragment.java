@@ -15,11 +15,11 @@ public class LeftMenuFragment extends Fragment {
     private View mView;
     private Context mContext;
     private ListView listView_left_category;
-    private LeftCateGoryAdapter mAdapter;
+    //private LeftCateGoryAdapter mAdapter;
     private String[] category_name;
     private String[] category_title;
     private Integer[] category_img;
-    private List<ItemCategoryModel> mLists;
+    //private List<ItemCategoryModel> mLists;
 
 
     public View onCreateView(LayoutInflater inflater,ViewGroup container,
@@ -28,8 +28,8 @@ public class LeftMenuFragment extends Fragment {
             mView=inflater.inflate(R.layout.leftmenu,container,false);
             initView();
             initValidata();
-            bindData();
-            initListerer();
+            //bindData();
+            //initListerer();
         }
 
         return mView;
