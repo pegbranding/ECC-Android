@@ -19,8 +19,7 @@
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/floor4image"
-                android:src="@drawable/floor4"/>
+                android:id="@+id/image1"/>
 
         </RelativeLayout>
 
@@ -32,8 +31,7 @@
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/big12floor5image"
-                android:src="@drawable/big12floor5"/>
+                android:id="@+id/image2"/>
         </RelativeLayout>
 
         <requestFocus />
@@ -46,8 +44,7 @@
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/ballroomfloor5image"
-                android:src="@drawable/ballroomfloor5"/>
+                android:id="@+id/image3"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -58,8 +55,7 @@
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/malottroomfloor6image"
-                android:src="@drawable/malottroomfloor6"/>
+                android:id="@+id/image4"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -70,8 +66,7 @@
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/kansasroomfloor6image"
-                android:src="@drawable/kansasroomfloor6"/>
+                android:id="@+id/image5"/>
         </RelativeLayout>
 
     </ViewFlipper>

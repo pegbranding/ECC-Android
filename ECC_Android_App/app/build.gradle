@@ -22,4 +22,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':libraries:SlidingMenu')
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 }

@@ -1,1 +1,1 @@
-include ":libraries:SlidingMenu", ":app"
+include ":libraries:SlidingMenu", ":app", ':universal-image-loader-1.9.3'

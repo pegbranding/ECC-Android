@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/SlidingMenu" />
+            <option value="$PROJECT_DIR$/universal-image-loader-1.9.3" />
           </set>
         </option>
       </GradleProjectSettings>
