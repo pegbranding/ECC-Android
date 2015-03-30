@@ -25,11 +25,9 @@
     <string name="tab1_name">List</string>
     <string name="tab2_name">Maps</string>
     <string name="tab3_name">Notes</string>
-
     <string name="noteArchiveFilename">KU_ECC_App_noteArchive</string>
     <string name="noteRecordSeparator">|r|</string>
     <string name="noteSeparatorMarker">|s|</string>
-
     <string name="make_new_note">Make a new note</string>
 
     <!-- composeNote Subview Strings -->
@@ -38,7 +36,6 @@
     <string name="note_body">Note Body:</string>
     <string name="save_note">Save Note</string>
     <string name="discard_draft">Discard Draft</string>
-
     <string name="emptyNoteDialogTitle">Invalid Note</string>
     <string name="emptyNoteDialogMessage">Please create both a title and body text for your note.</string>
     <string name="emptyNoteDialogOK">OK</string>
@@ -48,10 +45,13 @@
     <string name="titleTagEnd">|/title|</string>
     -->
 
+
     <!-- End ComposeNote Subactivity Strings -->
+
 
     <!-- End Notes Tab Strings -->
 
-
+    <string name="title_activity_company_detail">CompanyDetail</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

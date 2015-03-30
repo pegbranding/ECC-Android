@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import android.content.Intent;
+
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -34,8 +37,10 @@ public class CompanyList extends Fragment {
     private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
 
     ArrayList<String> companyNameList = new ArrayList<String>();
+    ArrayList<String> preSortedList = new ArrayList<String>();
     View view;
     ArrayAdapter<String> adapter;
+    ArrayList<JSONObject> companyDetailedData = new ArrayList<JSONObject>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,8 +61,23 @@ public class CompanyList extends Fragment {
                 int itemPosition = i;
                 String itemValue = (String) companyNameList.get(itemPosition);
 
-                Toast.makeText(getActivity().getApplicationContext(), "Position:"+itemPosition+" ListItem :"+itemValue,
-                    Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity().getApplicationContext(), "Position:" + itemPosition + " ListItem :" + itemValue,
+                //        Toast.LENGTH_SHORT).show();
+
+                int index = preSortedList.indexOf(itemValue);
+                System.out.println("Index of Selected : " + index);
+                System.out.println("Value in presorted : " + preSortedList.get(index));
+                try {
+                    JSONObject curCompany = (JSONObject) companyDetailedData.get(index);
+                    System.out.println("Value in detailedData: " + ((String) curCompany.get("company_name")));
+                    Intent newActivity = new Intent(getActivity(), CompanyDetail.class);
+                    newActivity.putExtra("Company_JSON_Object", curCompany.toString());
+
+                    startActivity(newActivity);
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
         });
 
@@ -109,19 +129,23 @@ public class CompanyList extends Fragment {
 
                 String result = builder.toString();
                 //System.out.println("LINE: " + result);
-                JSONObject topLevel = new JSONObject(result);
+                if (companyNameList.size() == 0) {
+                    JSONObject topLevel = new JSONObject(result);
 
-                ArrayList<JSONObject> companiesList = new ArrayList<JSONObject>();
+                    JSONArray arr = topLevel.getJSONArray("rows");
 
-                JSONArray arr = topLevel.getJSONArray("rows");
+                    for (int i = 1; i < arr.length(); i++) {
+                        JSONObject curCompany = (JSONObject) arr.get(i);
+                        String curCompanyName = ((String) curCompany.get("company_name")).substring(1);
+                        System.out.println("ThisCompany Name; " + curCompanyName);
+                        companyNameList.add(curCompanyName);
+                        preSortedList.add(curCompanyName);
+                        companyDetailedData.add(curCompany);
+                    }
 
-                for (int i = 0; i < arr.length(); i++) {
-                    JSONObject curCompany = (JSONObject) arr.get(i);
-                    String curCompanyName =  ((String) curCompany.get("company_name")).substring(1);
-                    System.out.println("ThisCompany Name; " + curCompanyName);
-                    companyNameList.add(curCompanyName);
+                    Collections.sort(companyNameList);
+
                 }
-
 
 
             } catch (Exception e) {
