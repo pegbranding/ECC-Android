@@ -22,6 +22,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+
 
 public class Map extends Fragment {
     String image1path = "http://people.eecs.ku.edu/~gbusing/floor4.png";
@@ -43,11 +45,11 @@ public class Map extends Fragment {
 
         Button nextButton = (Button)V.findViewById(R.id.nextbutton);
         Button previousButton = (Button)V.findViewById(R.id.previousbutton);
-        ImageView image1view = (ImageView)V.findViewById(R.id.image1);
-        ImageView image2view = (ImageView)V.findViewById(R.id.image2);
-        ImageView image3view = (ImageView)V.findViewById(R.id.image3);
-        ImageView image4view = (ImageView)V.findViewById(R.id.image4);
-        ImageView image5view = (ImageView)V.findViewById(R.id.image5);
+        ImageViewTouch image1view = (ImageViewTouch)V.findViewById(R.id.image1);
+        ImageViewTouch image2view = (ImageViewTouch)V.findViewById(R.id.image2);
+        ImageViewTouch image3view = (ImageViewTouch)V.findViewById(R.id.image3);
+        ImageViewTouch image4view = (ImageViewTouch)V.findViewById(R.id.image4);
+        ImageViewTouch image5view = (ImageViewTouch)V.findViewById(R.id.image5);
 
         ImageView[] imageviewarray = {image1view, image2view, image3view, image4view, image5view};
         String[] imagepatharray = {image1path, image2path, image3path, image4path, image5path};
@@ -106,6 +108,7 @@ public class Map extends Fragment {
         for(int i = 0; i < imageviewarray.length; i++)
         {
             imageLoader.displayImage(imagepatharray[i], imageviewarray[i]);
+
         }
 
         return V;

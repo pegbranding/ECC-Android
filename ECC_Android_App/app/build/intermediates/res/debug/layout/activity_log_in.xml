@@ -1,0 +1,98 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_login"
+    >
+    <RelativeLayout
+        android:id="@+id/login_div"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dip"
+        android:layout_margin="15dip"
+        android:background="@drawable/background_login_div">
+        <TextView
+            android:id="@+id/login_username_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/login_username"
+            style="@style/NormalText"
+            />
+        <EditText
+            android:id="@+id/username_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:hint="@string/login_username_hint"
+            android:singleLine="true"
+            android:inputType="text"
+            android:layout_below="@+id/login_username_input"
+            android:background="@drawable/edit_text"/>
+        
+        <TextView
+            android:id="@+id/login_userpass_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_below="@+id/username_edit"
+            android:layout_marginTop="10dp"
+            android:text="@string/login_userpass"
+            style="@style/NormalText"/>
+        <EditText
+            android:id="@+id/userpass_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/login_userpass_input"
+            android:password="true"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:hint="@string/login_userpass_hint"
+            android:background="@drawable/edit_text"/>
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userpass_edit"
+            android:layout_marginTop="20dp"
+            android:layout_alignRight="@+id/userpass_edit"
+            android:text="Log In"
+            android:background="@drawable/blue_button"/>
+        
+        </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/register_link"
+            android:text="Sign Up?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#CD950C"
+            android:textColorLink="#FF7256"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/forgotPass_link" />
+        <TextView
+            android:id="@+id/forgotPass_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_link"
+            android:layout_marginLeft="20dp"
+            android:text="Forgot Password?"
+            android:textSize="20dp"
+            android:textColor="#CD2626"
+            android:textColorLink="#6B8E23"/>
+        <ImageView
+            android:id="@+id/login_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/forgotPass_link"
+            android:src="@drawable/career_center"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+           />
+        </RelativeLayout>
+    </LinearLayout><!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/layout/activity_log_in.xml -->

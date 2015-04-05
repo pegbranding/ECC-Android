@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/leftMenuArrays.xml -->
+    <eat-comment/>
+    <string-array name="category_name">
+        <item>Search</item>
+        <item>All</item>
+        <item>Favourite</item>
+        <item>Checked</item>
+    </string-array>
+    <declare-styleable name="SlidingMenu"><attr name="mode"><enum name="left" value="0"/><enum name="right" value="1"/></attr><attr format="reference" name="viewAbove"/><attr format="reference" name="viewBehind"/><attr format="dimension" name="behindOffset"/><attr format="dimension" name="behindWidth"/><attr format="float" name="behindScrollScale"/><attr name="touchModeAbove"><enum name="margin" value="0"/><enum name="fullscreen" value="1"/><enum name="none" value="2"/></attr><attr name="touchModeBehind"><enum name="margin" value="0"/><enum name="fullscreen" value="1"/><enum name="none" value="2"/></attr><attr format="reference" name="shadowDrawable"/><attr format="dimension" name="shadowWidth"/><attr format="boolean" name="fadeEnabled"/><attr format="float" name="fadeDegree"/><attr format="boolean" name="selectorEnabled"/><attr format="reference" name="selectorDrawable"/></declare-styleable>
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="slidingmenu_offset">360dp</dimen>
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/exploded-aar/ECC_Android_App.libraries/SlidingMenu/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <item name="selected_view" type="id"/>
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <integer name="num_cols">1</integer>
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">ECC_Android_App</string>
+    <string name="discard_draft">Discard Draft</string>
+    <string name="emptyNoteDialogMessage">Please create both a title and body text for your note.</string>
+    <string name="emptyNoteDialogOK">OK</string>
+    <string name="emptyNoteDialogTitle">Invalid Note</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hello_world_list">Hello world! List Activity</string>
+    <string name="hello_world_map">Hello World! Map Activity </string>
+    <string name="hello_world_notes">Hello world! Notes Activity </string>
+    <string name="login_username">User ID</string>
+    <string name="login_username_hint">KU Email</string>
+    <string name="login_userpass">Password</string>
+    <string name="login_userpass_hint">User Password</string>
+    <string name="make_new_note">Make a new note</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="noteArchiveFilename">KU_ECC_App_noteArchive</string>
+    <string name="noteRecordSeparator">|r|</string>
+    <string name="noteSeparatorMarker">|s|</string>
+    <string name="note_body">Note Body:</string>
+    <string name="note_title">Note Title:</string>
+    <string name="save_note">Save Note</string>
+    <string name="tab1_name">List</string>
+    <string name="tab2_name">Maps</string>
+    <string name="tab3_name">Notes</string>
+    <string name="title_activity_company_detail">CompanyDetail</string>
+    <string name="title_activity_company_list">CompanyList</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_notes">Notes</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="NormalText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#080808</item>
+    </style>
+</resources>
