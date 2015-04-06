@@ -1,0 +1,6 @@
+ECC_Android_App/app/build/
+.gradle/
+local.properties
+.DS_Store
+
+

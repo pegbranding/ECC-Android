@@ -148,8 +148,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shadow=0x7f02000a;
     }
     public static final class id {
-        public static final int action_example=0x7f050038;
-        public static final int action_settings=0x7f050039;
+        public static final int action_example=0x7f05003a;
+        public static final int action_settings=0x7f05003b;
         public static final int checkBox=0x7f050011;
         public static final int checkBox2=0x7f050012;
         public static final int checkBox3=0x7f050013;
@@ -170,10 +170,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int forgotPass_link=0x7f050020;
         public static final int fullscreen=0x7f050003;
         public static final int image1=0x7f05002a;
+        public static final int label=0x7f050035;
         public static final int left=0x7f050000;
         public static final int linearLayout=0x7f050006;
         public static final int linearLayout1=0x7f050022;
-        public static final int listView_left_category=0x7f050036;
+        public static final int listView_left_category=0x7f050038;
         public static final int login_btn=0x7f05001e;
         public static final int login_div=0x7f050019;
         public static final int login_image=0x7f050021;
@@ -197,11 +198,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f050001;
         public static final int saveNoteButton=0x7f050018;
         public static final int selected_view=0x7f050005;
-        public static final int slidingmenumain=0x7f050037;
+        public static final int slidingmenumain=0x7f050039;
+        public static final int tableNum=0x7f050036;
         public static final int text1=0x7f050023;
         public static final int text2=0x7f050024;
         public static final int text3=0x7f050025;
-        public static final int type_email=0x7f050035;
+        public static final int type_email=0x7f050037;
         public static final int username_edit=0x7f05001b;
         public static final int userpass_edit=0x7f05001d;
         public static final int vPager=0x7f050027;
@@ -218,10 +220,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_main=0x7f030004;
         public static final int activity_map=0x7f030005;
         public static final int activity_notes=0x7f030006;
-        public static final int get_password=0x7f030007;
-        public static final int leftmenu=0x7f030008;
-        public static final int register=0x7f030009;
-        public static final int slidingmenumain=0x7f03000a;
+        public static final int company_list_row_item=0x7f030007;
+        public static final int get_password=0x7f030008;
+        public static final int leftmenu=0x7f030009;
+        public static final int register=0x7f03000a;
+        public static final int slidingmenumain=0x7f03000b;
     }
     public static final class menu {
         public static final int company_list=0x7f0a0000;
