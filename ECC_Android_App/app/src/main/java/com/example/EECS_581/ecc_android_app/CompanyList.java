@@ -36,10 +36,14 @@ import static com.example.EECS_581.ecc_android_app.R.layout.activity_company_lis
 public class CompanyList extends Fragment {
     private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
 
-    ArrayList<String> companyNameList = new ArrayList<String>();
-    ArrayList<String> preSortedList = new ArrayList<String>();
+    ArrayList<Company> companyList = new ArrayList<Company> ();
+    ArrayList<Company> unsortedCompanyList = new ArrayList<Company>();
+
     View view;
     ArrayAdapter<String> adapter;
+
+    CompanyArrayAdapter cadapter;
+
     ArrayList<JSONObject> companyDetailedData = new ArrayList<JSONObject>();
 
     @Override
@@ -48,38 +52,7 @@ public class CompanyList extends Fragment {
         view = inflater.inflate(activity_company_list, container, false);
         ListView listView = (ListView) view.findViewById(R.id.companyListView);
 
-
         new CallAPI().execute();
-
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, companyNameList);
-        listView.setAdapter(adapter);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int itemPosition = i;
-                String itemValue = (String) companyNameList.get(itemPosition);
-
-                //Toast.makeText(getActivity().getApplicationContext(), "Position:" + itemPosition + " ListItem :" + itemValue,
-                //        Toast.LENGTH_SHORT).show();
-
-                int index = preSortedList.indexOf(itemValue);
-                System.out.println("Index of Selected : " + index);
-                System.out.println("Value in presorted : " + preSortedList.get(index));
-                try {
-                    JSONObject curCompany = (JSONObject) companyDetailedData.get(index);
-                    System.out.println("Value in detailedData: " + ((String) curCompany.get("company_name")));
-                    Intent newActivity = new Intent(getActivity(), CompanyDetail.class);
-                    newActivity.putExtra("Company_JSON_Object", curCompany.toString());
-
-                    startActivity(newActivity);
-
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        });
 
         return view;
     }
@@ -129,7 +102,7 @@ public class CompanyList extends Fragment {
 
                 String result = builder.toString();
                 //System.out.println("LINE: " + result);
-                if (companyNameList.size() == 0) {
+                if (companyList.size() == 0) {
                     JSONObject topLevel = new JSONObject(result);
 
                     JSONArray arr = topLevel.getJSONArray("rows");
@@ -137,13 +110,17 @@ public class CompanyList extends Fragment {
                     for (int i = 1; i < arr.length(); i++) {
                         JSONObject curCompany = (JSONObject) arr.get(i);
                         String curCompanyName = ((String) curCompany.get("company_name")).substring(1);
+                        String curCompanyTableNum = ((String) curCompany.get("ecc_table")).substring(1);
                         System.out.println("ThisCompany Name; " + curCompanyName);
-                        companyNameList.add(curCompanyName);
-                        preSortedList.add(curCompanyName);
+
+                        Company curr = new Company(curCompanyName, curCompanyTableNum);
+                        companyList.add(curr);
+                        unsortedCompanyList.add(curr);
+
                         companyDetailedData.add(curCompany);
                     }
 
-                    Collections.sort(companyNameList);
+                    sortCompanies(companyList);
 
                 }
 
@@ -156,9 +133,60 @@ public class CompanyList extends Fragment {
             return "";
         }
 
+        public void sortCompanies(ArrayList<Company> list) {
+            for (int x = 0; x < list.size(); x++) {
+                for (int y = 0; y < list.size(); y++) {
+                    if (list.get(x).getName().compareTo(list.get(y).getName()) < 0) {
+                        Company temp = list.get(x);
+                        list.set(x, list.get(y));
+                        list.set(y, temp);
+                    }
+                }
+            }
+        }
+
+        public int findIndex(ArrayList<Company> list, String nameToFind) {
+            int index = -1;
+            for (int x = 0; x < list.size(); x++) {
+                if (list.get(x).getName().equals(nameToFind)) {
+                    index = x;
+                    break;
+                }
+            }
+            return index;
+        }
+
         protected void onPostExecute(String result) {
             ListView listView = (ListView) view.findViewById(R.id.companyListView);
-            adapter.notifyDataSetChanged();
+
+            cadapter = new CompanyArrayAdapter(getActivity(), companyList);
+
+            listView.setAdapter(cadapter);
+
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    int itemPosition = i;
+                    String itemValue = companyList.get(itemPosition).getName();
+
+                    int index = findIndex(unsortedCompanyList, itemValue);
+
+                    System.out.println("index of Selected : " + index);
+                    System.out.println("Value in unsorted : " + unsortedCompanyList.get(index).getName());
+                    try {
+                        JSONObject curCompany = (JSONObject) companyDetailedData.get(index);
+                        System.out.println("Value in detailedData: " + ((String) curCompany.get("company_name")));
+                        Intent newActivity = new Intent(getActivity(), CompanyDetail.class);
+                        newActivity.putExtra("Company_JSON_Object", curCompany.toString());
+
+                        startActivity(newActivity);
+
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            });
 
         }
     }
