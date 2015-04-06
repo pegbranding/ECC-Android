@@ -1,74 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:id="@+id/myLayout"
     tools:context="com.example.EECS_581.ecc_android_app.Map"
     android:background="@drawable/background_login">
 
 
     <ViewFlipper
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/eccflipper">
 
-        <RelativeLayout
-            android:id="@+id/Floor4Layout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+            <it.sephiroth.android.library.imagezoom.ImageViewTouch
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/image1"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/Floor5Big12Layout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/image2"/>
-        </RelativeLayout>
-
-        <requestFocus />
-
-        <RelativeLayout
-            android:id="@+id/Floor5BallroomLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/image3"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/Floor6MalottLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/image4"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/Floor6KansasLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/image5"/>
-        </RelativeLayout>
-
     </ViewFlipper>
 
 

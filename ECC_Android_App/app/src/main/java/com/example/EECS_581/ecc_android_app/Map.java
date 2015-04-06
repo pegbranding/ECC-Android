@@ -10,10 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import android.view.ViewGroup.LayoutParams;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -21,6 +21,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 
 
 public class Map extends Fragment {
@@ -37,33 +39,55 @@ public class Map extends Fragment {
         final View V = inflater.inflate(R.layout.activity_map, container, false);
         //sets the original progress for the progressbar depending on which image it is looking at.
         final ViewFlipper ECCFlipper = (ViewFlipper)V.findViewById(R.id.eccflipper);
-        ProgressBar eccprogress2 = (ProgressBar) V.findViewById(R.id.progressBar);
-        int oldprogress = ((ECCFlipper.getDisplayedChild() * 100) / (ECCFlipper.getChildCount() - 1));
-        eccprogress2.setProgress(oldprogress);
 
+        //sets up the calls for the buttons in order to use later
         Button nextButton = (Button)V.findViewById(R.id.nextbutton);
         Button previousButton = (Button)V.findViewById(R.id.previousbutton);
-        ImageView image1view = (ImageView)V.findViewById(R.id.image1);
-        ImageView image2view = (ImageView)V.findViewById(R.id.image2);
-        ImageView image3view = (ImageView)V.findViewById(R.id.image3);
-        ImageView image4view = (ImageView)V.findViewById(R.id.image4);
-        ImageView image5view = (ImageView)V.findViewById(R.id.image5);
 
-        ImageView[] imageviewarray = {image1view, image2view, image3view, image4view, image5view};
+        //need at least one imageview to expand upon later on
+        ImageViewTouch image1view = (ImageViewTouch)V.findViewById(R.id.image1);
+
+        //setting up the full url string array
         String[] imagepatharray = {image1path, image2path, image3path, image4path, image5path};
-
         DisplayImageOptions defaultoptions = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true).cacheInMemory(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(300)).build();
-
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(V.getContext())
                 .defaultDisplayImageOptions(defaultoptions)
                 .memoryCache(new WeakMemoryCache())
                 .discCacheSize(100 * 1024 * 1024).build();
-
         ImageLoader.getInstance().init(config);
 
+        //setting up parameters for the upcoming imageviewtouch views
+        ViewGroup.LayoutParams vp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
+        //setting up imageviewtouch with parameters to be able to input image
+        ImageViewTouch[] imageviewtoucharray = new ImageViewTouch[imagepatharray.length - 1];
+        for(int j = 0; j < (imagepatharray.length - 1); j++)
+        {
+            imageviewtoucharray[j] = new ImageViewTouch(getActivity(),null);
+            imageviewtoucharray[j].setLayoutParams(vp);
+        }
+        
+        //adding the imageviewtouch to the viewflipper
+        for(int k = 0; k < (imagepatharray.length - 1); k++)
+        {
+            ECCFlipper.addView(imageviewtoucharray[k]);
+        }
+
+        //setting up imageloader to input the images from the urls to the imageviewtouch views
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.displayImage(imagepatharray[0], image1view);
+        for(int i = 1; i < imagepatharray.length; i++)
+        {
+            imageLoader.displayImage(imagepatharray[i], imageviewtoucharray[i - 1]);
+        }
+
+        //sets up progress bar and next/previous buttons
+        ProgressBar eccprogress2 = (ProgressBar) V.findViewById(R.id.progressBar);
+        int oldprogress = ((ECCFlipper.getDisplayedChild() * 100) / (ECCFlipper.getChildCount() - 1));
+        eccprogress2.setProgress(oldprogress);
         View.OnClickListener newListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,12 +125,6 @@ public class Map extends Fragment {
 
         nextButton.setOnClickListener(newListener);
         previousButton.setOnClickListener(newListener);
-
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        for(int i = 0; i < imageviewarray.length; i++)
-        {
-            imageLoader.displayImage(imagepatharray[i], imageviewarray[i]);
-        }
 
         return V;
     }

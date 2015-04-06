@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.EECS_581.ecc_android_app.CompanyList">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" android:showAsAction="never" />
+</menu>
+<!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/menu/menu_company_list.xml -->
