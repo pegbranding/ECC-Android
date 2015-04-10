@@ -41,18 +41,18 @@ public class CompanyList extends Fragment {
     private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
 
     public static ArrayList<Company> companyList = new ArrayList<Company> ();
-    public static ArrayList<Company> unsortedCompanyList = new ArrayList<Company>();
 
     View view;
 
     CompanyArrayAdapter cadapter;
+    ListView listview;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(activity_company_list, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.companyListView);
+        listview = (ListView) view.findViewById(R.id.companyListView);
 
         new CallAPI().execute();
 
@@ -87,13 +87,6 @@ public class CompanyList extends Fragment {
                 companyList.get(i).setVisited(b);
             }
         }
-
-        for (int j = 0; j < unsortedCompanyList.size(); j++) {
-            if (unsortedCompanyList.get(j).getName().equals(st)) {
-                unsortedCompanyList.get(j).setVisited(b);
-            }
-        }
-
     }
 
     public static void setFavorited(String st, boolean b) {
@@ -102,13 +95,6 @@ public class CompanyList extends Fragment {
                 companyList.get(i).setFavorited(b);
             }
         }
-
-        for (int j = 0; j < unsortedCompanyList.size(); j++) {
-            if (unsortedCompanyList.get(j).getName().equals(st)) {
-                unsortedCompanyList.get(j).setFavorited(b);
-            }
-        }
-
     }
 
     private class CallAPI extends AsyncTask<String, String,String> {
@@ -163,10 +149,10 @@ public class CompanyList extends Fragment {
                                 curCompanyWebsite, curCompanyMajors, curCompanyPositions, curCompanyDegrees);
 
                         companyList.add(curr);
-                        unsortedCompanyList.add(curr);
                     }
 
                     sortCompanies(companyList);
+
 
                 }
 
@@ -222,13 +208,11 @@ public class CompanyList extends Fragment {
                     int itemPosition = i;
                     String itemValue = companyList.get(itemPosition).getName();
 
-                    int index = findIndex(unsortedCompanyList, itemValue);
+                    int index = findIndex(companyList, itemValue);
 
-                    System.out.println("index of Selected : " + index);
-                    System.out.println("Value in unsorted : " + unsortedCompanyList.get(index).getName());
                     try {
-                        JSONObject curCompany = (JSONObject) unsortedCompanyList.get(index).toJSON();
-                        System.out.println("Value in detailedData: " + ((String) curCompany.get("company_name")));
+                        JSONObject curCompany = (JSONObject) companyList.get(index).toJSON();
+                        //System.out.println("Value in detailedData: " + ((String) curCompany.get("company_name")));
                         Intent newActivity = new Intent(getActivity(), CompanyDetail.class);
                         newActivity.putExtra("Company_JSON_Object", curCompany.toString());
 
