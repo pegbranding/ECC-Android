@@ -2,11 +2,25 @@
 <items version="2" >
 
     <item
+        jar="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/exploded-aar/ECC_Android_App.libraries/SlidingMenu/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="0391fd7c4fe6853c9dd5567423a8bd9aaca75aad">
+        <dex dex="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-f1acc59b4cffe82f91d23d5dc22537d9c8b241cd.jar" />
+    </item>
+    <item
         jar="/Users/eric/Downloads/adt-bundle-mac-x86_64/sdk/extras/android/m2repository/com/android/support/support-v4/13.0.0/support-v4-13.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="3fe75433da602500cc71fcc1c46e5550291dd45d">
         <dex dex="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/support-v4-13.0.0-74604a4e4d7ccc8d9afd51023a9658f4be3c961e.jar" />
+    </item>
+    <item
+        jar="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/exploded-aar/it.sephiroth.android.library.imagezoom/imagezoom/2.1.1/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8fbd4390c086423b591596e4b04a03e0e59b9397">
+        <dex dex="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-1fa751465acc94025f287f50ecbc83ab3985008e.jar" />
     </item>
     <item
         jar="/Users/eric/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.3/a85588bec3e2c4584d593d3f15df1677321bca72/universal-image-loader-1.9.3.jar"
@@ -21,20 +35,6 @@
         revision="20.0.0"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
         <dex dex="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/library-2.4.0-c987439f7ae24946a4397375205b55ce30f13a96.jar" />
-    </item>
-    <item
-        jar="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/exploded-aar/ECC_Android_App.libraries/SlidingMenu/unspecified/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="c3cbec199557dcbfa08083a50dd5a0b9fc79d460">
-        <dex dex="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-f1acc59b4cffe82f91d23d5dc22537d9c8b241cd.jar" />
-    </item>
-    <item
-        jar="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/exploded-aar/it.sephiroth.android.library.imagezoom/imagezoom/2.1.1/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="8fbd4390c086423b591596e4b04a03e0e59b9397">
-        <dex dex="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-1fa751465acc94025f287f50ecbc83ab3985008e.jar" />
     </item>
 
 </items>

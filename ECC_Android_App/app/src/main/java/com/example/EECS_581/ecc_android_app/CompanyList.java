@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import android.util.Log;
@@ -25,6 +27,8 @@ import java.net.HttpURLConnection;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import android.content.Intent;
+import java.io.File;
+import android.content.Context;
 
 
 import org.json.JSONObject;
@@ -36,15 +40,13 @@ import static com.example.EECS_581.ecc_android_app.R.layout.activity_company_lis
 public class CompanyList extends Fragment {
     private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
 
-    ArrayList<Company> companyList = new ArrayList<Company> ();
-    ArrayList<Company> unsortedCompanyList = new ArrayList<Company>();
+    public static ArrayList<Company> companyList = new ArrayList<Company> ();
+    public static ArrayList<Company> unsortedCompanyList = new ArrayList<Company>();
 
     View view;
-    ArrayAdapter<String> adapter;
 
     CompanyArrayAdapter cadapter;
 
-    ArrayList<JSONObject> companyDetailedData = new ArrayList<JSONObject>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +81,36 @@ public class CompanyList extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    public static void setVisited(String st, boolean b) {
+        for (int i = 0; i < companyList.size(); i++) {
+            if (companyList.get(i).getName().equals(st)) {
+                companyList.get(i).setVisited(b);
+            }
+        }
+
+        for (int j = 0; j < unsortedCompanyList.size(); j++) {
+            if (unsortedCompanyList.get(j).getName().equals(st)) {
+                unsortedCompanyList.get(j).setVisited(b);
+            }
+        }
+
+    }
+
+    public static void setFavorited(String st, boolean b) {
+        for (int i = 0; i < companyList.size(); i++) {
+            if (companyList.get(i).getName().equals(st)) {
+                companyList.get(i).setFavorited(b);
+            }
+        }
+
+        for (int j = 0; j < unsortedCompanyList.size(); j++) {
+            if (unsortedCompanyList.get(j).getName().equals(st)) {
+                unsortedCompanyList.get(j).setFavorited(b);
+            }
+        }
+
+    }
+
     private class CallAPI extends AsyncTask<String, String,String> {
 
         @Override
@@ -86,10 +118,20 @@ public class CompanyList extends Fragment {
             BufferedInputStream bufferedStream;
 
             try {
-                URL url = new URL(restURL);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                File file = getActivity().getBaseContext().getFileStreamPath("companylist");
+                if (file.exists()) {
+                    System.out.println("It exists!");
+                    FileInputStream fis = new FileInputStream(file);
+                    bufferedStream = new BufferedInputStream(fis);
+                } else {
 
-                bufferedStream = new BufferedInputStream(urlConnection.getInputStream());
+                    System.out.println("Does not exist!");
+
+                    URL url = new URL(restURL);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    bufferedStream = new BufferedInputStream(urlConnection.getInputStream());
+
+                }
 
                 InputStreamReader reader = new InputStreamReader(bufferedStream);
                 BufferedReader bufferedReader = new BufferedReader(reader);
@@ -99,8 +141,8 @@ public class CompanyList extends Fragment {
                     builder.append(line);
                     line = bufferedReader.readLine();
                 }
-
-                String result = builder.toString();
+                String result = new String(builder.toString());
+                System.out.println("result: " + result);
                 //System.out.println("LINE: " + result);
                 if (companyList.size() == 0) {
                     JSONObject topLevel = new JSONObject(result);
@@ -111,17 +153,27 @@ public class CompanyList extends Fragment {
                         JSONObject curCompany = (JSONObject) arr.get(i);
                         String curCompanyName = ((String) curCompany.get("company_name")).substring(1);
                         String curCompanyTableNum = ((String) curCompany.get("ecc_table")).substring(1);
-                        System.out.println("ThisCompany Name; " + curCompanyName);
+                        String curCompanyOverview = ((String) curCompany.get("overview")).substring(1);
+                        String curCompanyWebsite = ((String) curCompany.get("website")).substring(1);
+                        String curCompanyMajors = ((String) curCompany.get("majors")).substring(1);
+                        String curCompanyPositions = ((String) curCompany.get("position_types"));
+                        String curCompanyDegrees = ((String) curCompany.get("degree_levels")).substring(1);
 
-                        Company curr = new Company(curCompanyName, curCompanyTableNum);
+                        Company curr = new Company(curCompanyName, curCompanyTableNum, curCompanyOverview,
+                                curCompanyWebsite, curCompanyMajors, curCompanyPositions, curCompanyDegrees);
+
                         companyList.add(curr);
                         unsortedCompanyList.add(curr);
-
-                        companyDetailedData.add(curCompany);
                     }
 
                     sortCompanies(companyList);
 
+                }
+
+                if (!file.exists()) {
+                    FileOutputStream fos = getActivity().getBaseContext().openFileOutput("companylist", Context.MODE_PRIVATE);
+                    byte[] content = result.getBytes();
+                    fos.write(content);
                 }
 
 
@@ -175,7 +227,7 @@ public class CompanyList extends Fragment {
                     System.out.println("index of Selected : " + index);
                     System.out.println("Value in unsorted : " + unsortedCompanyList.get(index).getName());
                     try {
-                        JSONObject curCompany = (JSONObject) companyDetailedData.get(index);
+                        JSONObject curCompany = (JSONObject) unsortedCompanyList.get(index).toJSON();
                         System.out.println("Value in detailedData: " + ((String) curCompany.get("company_name")));
                         Intent newActivity = new Intent(getActivity(), CompanyDetail.class);
                         newActivity.putExtra("Company_JSON_Object", curCompany.toString());

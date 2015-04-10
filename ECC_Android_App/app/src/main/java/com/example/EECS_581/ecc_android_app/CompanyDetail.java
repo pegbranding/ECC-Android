@@ -6,12 +6,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import org.json.JSONObject;
+
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.view.View;
 import android.text.Html;
+import android.widget.CheckBox;
 
 
 public class CompanyDetail extends Activity {
+
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +27,16 @@ public class CompanyDetail extends Activity {
 
         setContentView(R.layout.activity_company_detail);
 
+        updateCompanyInfo(st);
+
+
+
+    }
+
+    public void updateCompanyInfo(String st) {
         try {
             JSONObject j = new JSONObject(st);
-            String companyName = (String) j.get("company_name");
-            companyName = companyName.substring(1);
+            final String companyName = (String) j.get("company_name");
             setTitle(companyName);
 
             TextView displayCompanyName = (TextView) findViewById(R.id.companyDetailName);
@@ -33,22 +44,18 @@ public class CompanyDetail extends Activity {
 
             TextView displayCompanyECCTable = (TextView) findViewById(R.id.companyDetailECCTable);
             String ECC_table = (String) j.get("ecc_table");
-            ECC_table = ECC_table.substring(1);
             displayCompanyECCTable.append(ECC_table);
 
             TextView displayCompanyOverview = (TextView) findViewById(R.id.companyDetailOverview);
             String overview = (String) j.get("overview");
-            overview = overview.substring(1);
             displayCompanyOverview.append(Html.fromHtml(overview));
 
             TextView displayCompanyWebsite = (TextView) findViewById(R.id.companyDetailWebsite);
             String website = (String) j.get("website");
-            website = website.substring(1);
             displayCompanyWebsite.append(website);
 
             TextView displayCompanyMajors = (TextView) findViewById(R.id.companyDetailMajors);
             String majors = (String) j.get("majors");
-            majors = majors.substring(1);
             displayCompanyMajors.append(majors);
 
             TextView displayCompanyPositionTypes = (TextView) findViewById(R.id.companyDetailPositionTypes);
@@ -57,15 +64,35 @@ public class CompanyDetail extends Activity {
 
             TextView displayCompanyDegreeLevels = (TextView) findViewById(R.id.companyDetailDegreeLevels);
             String degree_levels = (String) j.get("degree_levels");
-            degree_levels = degree_levels.substring(1);
             displayCompanyDegreeLevels.append(degree_levels);
+
+            CheckBox visitedBox = (CheckBox) findViewById (R.id.companyDetailVisited);
+            Boolean visited = (Boolean) j.get("visited");
+            visitedBox.setChecked(visited);
+            visitedBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                    System.out.println("visited check is now: " + isChecked);
+                    CompanyList.setVisited(companyName, isChecked);
+                }
+            });
+
+            CheckBox favoritedBox = (CheckBox) findViewById (R.id.companyDetailFavorite);
+            Boolean favorited = (Boolean) j.get("favorited");
+            favoritedBox.setChecked(favorited);
+            favoritedBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                    System.out.println("favorite check is now: " + isChecked);
+                    CompanyList.setFavorited(companyName, isChecked);
+                }
+            });
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -23,13 +23,11 @@ public class CompanyArrayAdapter extends ArrayAdapter<Company> implements Filter
     private ArrayList<Company> allCompanyItemsArray;
     private ArrayList<Company> filteredCompanyItemsArray;
     private Activity context;
-    //private ModelFilter filter;
     private LayoutInflater inflater;
 
 
     public CompanyArrayAdapter(Activity context, List<Company> list) {
         super(context, R.layout.company_list_row_item, list);
-        System.out.println("Size of given list: " + list.size());
         this.context = context;
         this.allCompanyItemsArray = new ArrayList<Company>();
         allCompanyItemsArray.addAll(list);
@@ -49,44 +47,20 @@ public class CompanyArrayAdapter extends ArrayAdapter<Company> implements Filter
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        System.out.println("size of our list: " + allCompanyItemsArray.size());
-        // 1. Create inflater
+
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-        // 2. Get rowView from inflater
         View rowView = inflater.inflate(R.layout.company_list_row_item, parent, false);
 
-        // 3. Get the two text view from the rowView
         TextView labelView = (TextView) rowView.findViewById(R.id.label);
         TextView valueView = (TextView) rowView.findViewById(R.id.tableNum);
 
-        // 4. Set the text for textView
         labelView.setText(allCompanyItemsArray.get(position).getName());
         valueView.setText(allCompanyItemsArray.get(position).getTableNum());
 
 
-        // 5. retrn rowView
         return rowView;
-
-       /* View view = null;
-
-        Company c = filteredCompanyItemsArray.get(position);
-
-        ViewHolder viewHolder = null;
-        if (convertView == null) {
-
-            view = inflater.inflate(android.R.layout.simple_list_item_1, null);
-            viewHolder = new ViewHolder();
-            viewHolder.text = (TextView) view.findViewById(R.id.companyDetailName);
-            view.setTag(viewHolder);
-        } else {
-            view = convertView;
-            viewHolder = ((ViewHolder) view.getTag());
-        }
-        viewHolder.text.setText(c.getName());
-
-        return view;*/
     }
 
     /*private class ModelFilter extends Filter
