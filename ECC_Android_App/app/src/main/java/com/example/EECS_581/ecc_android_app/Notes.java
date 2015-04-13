@@ -1,15 +1,14 @@
 package com.example.EECS_581.ecc_android_app;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.text.Layout;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 
 import java.io.File;
@@ -39,6 +39,12 @@ public class Notes extends Fragment {
     String separator;
     String noteArchiveFilename;
 
+    //The actual Java File object which points to the plaintext internal storage file to which notes
+    //are saved.
+    File noteArchiveDataFile;
+    boolean firstWrite = true;//Whether this run of the program has conducted the first write of the
+    //note archive. Controls whether to overwrite or append, to avoid polluting the archive.
+
     private ViewFlipper notesViewFlipper;
 
     //The EditText fields for entering a Note's Title and Body fields.
@@ -47,23 +53,26 @@ public class Notes extends Fragment {
 
     //Buttons for user control of the activity. Self explanatory.
     private Button newNoteButton;
-    private Button saveNoteButton;
-    private Button discardDraftButton;
+    private Button saveNoteButton;//EditNoteMode element
+    private Button discardDraftButton;//EditNoteMode element
+    private Button editNoteButton;//ViewNoteMode element
+    private Button deleteNoteButton;//ViewNoteMode element
 
     //An alert dialogue builder specifically for warning the user about empty notes.
     AlertDialog emptyNoteAlert;
 
     //The ListView which contains the list of written notes.
-    ListView notesListView;//TODO finish!
+    ListView notesListView;//TODO finish! (complete noteArrayAdapter to make each row look nice)
     ArrayList<String> notesList;//The ArrayList containing the actual notes themselves.
 
     View notesView;//The View for this portion of the activity, allowing Fragment compatibility.
+    private KeyListener mainKeyListener;//The main key listener, used to re-enable edittext fields.
+
 
     //=-=-=-=-=- /Class Variable Definitions =-=-=-=-=-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         notesView = inflater.inflate(R.layout.activity_notes,container,false);
         initializeNotesClass();
@@ -81,6 +90,31 @@ public class Notes extends Fragment {
         //Next initialize the note archive filename, again referencing strings.xml.
         noteArchiveFilename = getResources().getString(R.string.noteArchiveFilename);
 
+        //Then try to open the note archive data file, creating it if it doesn't yet exist.
+        noteArchiveDataFile = new File(
+                getActivity().getApplicationContext().getFilesDir(),
+                noteArchiveFilename);
+
+        try {
+            if (!noteArchiveDataFile.exists()) {
+                FileOutputStream temp = getActivity().getApplicationContext().openFileOutput(
+                        noteArchiveFilename, Context.MODE_APPEND);
+                temp.write(1);//TODO CONTINUE FROM HERE NEXT TIME! write seems to force file
+                //creation.
+                if (!noteArchiveDataFile.exists()) {
+                    Log.e("Notes.initializeNotesClass()","Unable to create the note archive!");
+                }
+            }
+            else{
+                firstWrite = false;
+            }
+        }
+        catch (IOException e){
+            Log.e("Notes.initializeNotesClass()","IOException: Note archive not created!");
+        }
+
+        Log.e("Notes.initializeNotesClass()",noteArchiveDataFile.toString());
+
         //Then get each of the relevant XML elements,
         notesViewFlipper = (ViewFlipper) notesView.findViewById(R.id.notesViewFlipper);
 
@@ -88,12 +122,16 @@ public class Notes extends Fragment {
         noteBody  = (EditText) notesView.findViewById(R.id.noteBodyEditView);
 
         newNoteButton = (Button) notesView.findViewById(R.id.make_new_note_button);
-        saveNoteButton = (Button) notesView.findViewById(R.id.saveNoteButton);
+        saveNoteButton = (Button) notesView.findViewById(R.id.saveNoteButton);//EditNoteMode
         discardDraftButton = (Button) notesView.findViewById(R.id.discardDraftButton);
+        editNoteButton = (Button) notesView.findViewById(R.id.editNoteButton);//ViewNoteMode
+        deleteNoteButton = (Button) notesView.findViewById(R.id.deleteNoteButton);
 
-        //And build the empty note alert dialog.
+
+        //And build the empty note alert dialog. Use just getActivity() here; otherwise it crashes
+        //on displaying the constructed alert dialog.
         AlertDialog.Builder emptyNoteADB = new AlertDialog.Builder(
-                getActivity().getApplicationContext());
+                getActivity());
         emptyNoteADB.setTitle(R.string.emptyNoteDialogTitle);
         emptyNoteADB.setMessage(R.string.emptyNoteDialogMessage);
         emptyNoteADB.setNegativeButton(R.string.emptyNoteDialogOK,
@@ -107,22 +145,23 @@ public class Notes extends Fragment {
 
         notesListView = (ListView)notesView.findViewById(R.id.notesListView);
 
+        mainKeyListener = noteTitle.getKeyListener();
 
         //Setting the action of the Make New Note Button.
         newNoteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                //First, set the View to the composeNote portion.
+                switchNoteViewMode("Edit");
+                //Set the View to the viewNote portion.
                 notesViewFlipper.setDisplayedChild(
                         notesViewFlipper.indexOfChild(
-                                notesView.findViewById(R.id.composeNoteScreen)));
+                                notesView.findViewById(R.id.viewNoteScreen)));
 
-                /*
-                //3. Exit back to this activity (also in CN), showing the new note in the list!
+            /*
+            //3. Exit back to this activity (also in CN), showing the new note in the list!
 
-                //TODO: this will probably demand dynamic creation of buttons, or other XML elements
-                //TODO: which will be then accessed. Figure it out! (see NoteArrayAdapter.java)
-                */
+            //TODO: this will probably demand dynamic creation of buttons, or other XML elements
+            //TODO: which will be then accessed. Figure it out! (see NoteArrayAdapter.java)
+            */
             }
         });
 
@@ -149,6 +188,7 @@ public class Notes extends Fragment {
                     //already populated.
                     refreshNotesList();
 
+                    switchNoteViewMode("View");
                     //Set the View to the notesList portion.
                     notesViewFlipper.setDisplayedChild(
                             notesViewFlipper.indexOfChild(
@@ -164,23 +204,48 @@ public class Notes extends Fragment {
                 noteTitle.setText("");
                 noteBody.setText("");
 
+                switchNoteViewMode("View");
                 //Switch back to the notesList portion without saving.
                 notesViewFlipper.setDisplayedChild(
                         notesViewFlipper.indexOfChild(
                                 notesView.findViewById(R.id.notesListScreen)));
             }
         });
+
+        //Setting the action of the Edit Note Button.
+        editNoteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //First save the original note contents, in case edits are discarded.
+                String originalTitle = noteTitle.getText().toString();
+                String originalBody = noteBody.getText().toString();
+
+                //Then switch to "Edit" mode by dis/enabling the proper fields and buttons, making
+                // them visible and capable of interaction.
+                switchNoteViewMode("Edit");
+            }
+        });
+
+        //Setting the action of the Delete Note Button.
+        deleteNoteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //Flush the noteTitle and noteBody fields, and then...
+                noteTitle.setText("");
+                noteBody.setText("");
+                //TODO write a (real) deletion function! Not a complete purge!(first see TODO 0)
+                purgeNoteArchive();
+
+                switchNoteViewMode("View");
+
+                //Switch back to the notesList portion without saving.
+                notesViewFlipper.setDisplayedChild(
+                        notesViewFlipper.indexOfChild(
+                                notesView.findViewById(R.id.notesListScreen)));
+            }
+        });
+        switchNoteViewMode("View");//View mode active by default.
         //Also complete the initial note list refresh.
         refreshNotesList();
     }
-
-    /*
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getActivity().getMenuInflater().inflate(R.menu.menu_notes, menu);
-        return true;
-    }
-    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -204,12 +269,11 @@ public class Notes extends Fragment {
         notesList = getNoteList();//First, acquire an updated String ArrayList of notes.
 
         if(notesList != null){//If notes exist, proceed to populate the list.
-            ArrayAdapter<String> notesArrayAdapter = new ArrayAdapter<String>(
+            ArrayAdapter<String> notesArrayAdapter = new ArrayAdapter<>(
                     getActivity().getApplicationContext(),
                     android.R.layout.simple_list_item_1,
                     notesList);
             notesListView.setAdapter(notesArrayAdapter);
-            notesArrayAdapter.toString();
 
             notesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -227,10 +291,7 @@ public class Notes extends Fragment {
                     //Then switch to seeing the Note!
                     notesViewFlipper.setDisplayedChild(
                             notesViewFlipper.indexOfChild(
-                                    notesView.findViewById(R.id.composeNoteScreen)));
-                    //TODO revise this so that there is a simple "view note" screen, which includes
-                    //edit and delete buttons. Click edit, and go to composeNoteScreen. Click delete
-                    //and the note is deleted and the user switches back to notesListScreen.
+                                    notesView.findViewById(R.id.viewNoteScreen)));
 
                     //TODO ALSO! Make sure that saveNote doesn't produce duplicates (as per above)!
                 }
@@ -258,9 +319,8 @@ public class Notes extends Fragment {
      */
     void saveNoteRecord(String title, String body){
         try{
-            FileOutputStream noteArchiveOutput =
-                    getActivity().getApplicationContext().openFileOutput(
-                            noteArchiveFilename,getActivity().getApplicationContext().MODE_APPEND);
+            FileOutputStream noteArchiveOutput = new FileOutputStream(
+                    noteArchiveDataFile, !firstWrite);
 
             //First cleanse note data of | symbols, which could cause errors in note handling else
             //where.
@@ -270,20 +330,28 @@ public class Notes extends Fragment {
             //Then write the record beginning tag,
             noteArchiveOutput.write(recordStart.getBytes());
             //Title text,
-            noteArchiveOutput.write(title.getBytes());
+            noteArchiveOutput.write(cleanedTitle.getBytes());
             //And separator tag.
             noteArchiveOutput.write(separator.getBytes());
 
             //Next up write the body, and you're done!
-            noteArchiveOutput.write(body.getBytes());
+            noteArchiveOutput.write(cleanedBody.getBytes());
 
+            if(firstWrite){
+                firstWrite = false;
+            }
+
+            //TODO REMOVE DEBUGGING OUTPUT
+            //Log.e("Notes.saveNoteRecord()","(title,body): " + cleanedTitle + ","+cleanedBody);
             noteArchiveOutput.close();
         }
         catch(Exception e){
             if(e instanceof FileNotFoundException){
+                Log.e("Notes.saveNoteRecord()","FileNotFoundException: Note archive not found!");
                 //TODO special handling for each exception type!
             }
             else if(e instanceof IOException){
+                Log.e("Notes.saveNoteRecord()","IOException: Unable to write to Note archive!");
                 //TODO special handling for each exception type!
             }
         }
@@ -298,9 +366,12 @@ public class Notes extends Fragment {
     ArrayList<String> getNoteList(){
         ArrayList<String> listOfNotes = null;
         try{
-            listOfNotes = new ArrayList<String>();
-            FileInputStream noteArchiveInput =
-                    getActivity().getApplicationContext().openFileInput(noteArchiveFilename);
+            listOfNotes = new ArrayList<>();//<> only since String was specified in initialization.
+            FileInputStream noteArchiveInput = new FileInputStream(noteArchiveDataFile);
+
+            //TODO remove debugging code here
+            //Log.e("Notes.getNoteList()","FileInputStream: "+noteArchiveInput.toString());
+            //Log.e("Notes.getNoteList()","File: "+noteArchiveDataFile.toString());
 
             //First obtain the whole note archive.
             //TODO replace this code with more efficient reading code?
@@ -314,7 +385,7 @@ public class Notes extends Fragment {
             //Then produce the array of its components,
             String tempArchiveCopy = builder.toString();
 
-            Log.e("tAC:",tempArchiveCopy);
+            //Log.e("tAC:",tempArchiveCopy);
 
             //And produce a list of strings, each element corresponding to one note.
             while( tempArchiveCopy.contains(recordStart) ) {
@@ -342,9 +413,11 @@ public class Notes extends Fragment {
         }
         catch(Exception e){
             if(e instanceof FileNotFoundException){
+                Log.e("Notes.getNoteList()","FileNotFoundException: Note archive not found!");
                 //TODO special handling for each exception type!
             }
             else if(e instanceof IOException){
+                Log.e("Notes.getNoteList()","IOException: Unable to write to Note archive!");
                 //TODO special handling for each exception type!
             }
         }
@@ -359,25 +432,76 @@ public class Notes extends Fragment {
         //TODO FIX! Currently doesn't /ever/ successfully delete the note archive!
         //Might this be due to it not using a full / absolute filepath? Investigate!
         try{
-            //First, delete the file.
-            File noteArchive = new File(noteArchiveFilename);
-            if(noteArchive.delete()){
-                Log.e("DELETION","\n\nNOTE ARCHIVE DELETED!!!\n\n");
-            }
-            else{
-                Log.e("SURVIVAL","\n\nNote archive NOT deleted...\n\n");
-            }
-
-            //Then purge all note copies from local memory.
-            notesList.clear();
+            noteArchiveDataFile.delete();
         }
         catch(Exception e){
-            if(e instanceof FileNotFoundException){
-                //TODO special handling for each exception type!
-            }
-            else if(e instanceof IOException){
+            if(e instanceof SecurityException){
+                Log.e("Notes.purgeNoteArchive()",
+                        "SecurityException: Note archive deletion denied!");
                 //TODO special handling for each exception type!
             }
         }
+    }
+    /*
+     * A function to easily switch between different note viewing "modes", AKA function and feature
+     * sets. Current included modes are listed and paraphrased below:
+     * 0. View Note: this mode handles simple viewing of a note, and has buttons to allow editing or
+     *    deletion. This mode is also the default of the modes.
+     * 1. Edit Note: this mode is reached by clicking "Edit Note" from the "View Note" mode, and
+     *    handles editing of existing notes, as well as the creation of brand new ones. The
+     *    "Save Note" and "Discard Draft" buttons are enabled.
+     *
+     * If no proper mode is given via the "mode" parameter, it will default to the "View" mode. For
+     * clarity, all calls to this function intending to invoke the "View" mode should still include
+     * that as a parameter.
+     */
+    private void switchNoteViewMode(String mode){
+        switch(mode){
+            case "Edit":
+                //TODO refine interface so buttons irrelevant to current mode aren't even visible
+                /*
+                noteTitle.setEnabled(true);
+                noteTitle.setFocusable(true);
+                noteBody.setEnabled(true);
+                noteBody.setFocusable(true);
+                */
+                noteTitle.setKeyListener(mainKeyListener);
+                noteBody.setKeyListener(mainKeyListener);
+
+                //saveNoteButton.setVisibility(View.VISIBLE);
+                saveNoteButton.setEnabled(true);
+
+                //discardDraftButton.setVisibility(View.VISIBLE);
+                discardDraftButton.setEnabled(true);
+
+                //editNoteButton.setVisibility(View.GONE);
+                editNoteButton.setEnabled(false);
+
+                //deleteNoteButton.setVisibility(View.GONE);
+                deleteNoteButton.setEnabled(false);
+
+                break;
+            default://AKA the "View" case.
+                //TODO refine interface so buttons irrelevant to current mode aren't even visible
+                /*
+                noteTitle.setEnabled(false);
+                noteTitle.setFocusable(false);
+                noteBody.setEnabled(false);
+                noteBody.setFocusable(false);
+                */
+                noteTitle.setKeyListener(null);
+                noteBody.setKeyListener(null);
+
+                //saveNoteButton.setVisibility(View.GONE);
+                saveNoteButton.setEnabled(false);
+                //discardDraftButton.setVisibility(View.GONE);
+                discardDraftButton.setEnabled(false);
+                //editNoteButton.setVisibility(View.VISIBLE);
+                editNoteButton.setEnabled(true);
+                //deleteNoteButton.setVisibility(View.VISIBLE);
+                deleteNoteButton.setEnabled(true);
+        }
+
+
     }
 }
