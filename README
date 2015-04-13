@@ -16,6 +16,8 @@ mongodb --rest interface is at http://54.149.119.218:28017 (mongodb is @
 
 sudo mongod --rest --fork --syslog
 
+LICENSE:
+
 The MIT License (MIT)
 
 Copyright (c) 2015 Gordon Busing, Niko Colom, Eric Groves, Jiaxiang Li, with the University of Kansas
@@ -37,3 +39,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+NOTIFICATION:
+Application was built with the following libraries:
+
+Android Universal Image Loader
+https://github.com/nostra13/Android-Universal-Image-Loader
+
+Sliding Menu
+https://github.com/jfeinstein10/SlidingMenu
+
+ImageViewZoom
+https://github.com/sephiroth74/ImageViewZoom
