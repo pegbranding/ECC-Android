@@ -148,8 +148,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shadow=0x7f02000a;
     }
     public static final class id {
-        public static final int action_example=0x7f050039;
-        public static final int action_settings=0x7f05003a;
+        public static final int action_example=0x7f05003b;
+        public static final int action_settings=0x7f05003c;
         public static final int checkBox=0x7f050012;
         public static final int companyDetailDegreeLevels=0x7f05000f;
         public static final int companyDetailECCTable=0x7f05000a;
@@ -165,6 +165,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int cursor=0x7f050025;
         public static final int discardDraftButton=0x7f050032;
         public static final int eccflipper=0x7f050028;
+        public static final int favoriteStar=0x7f050035;
         public static final int forgotPass_link=0x7f05001f;
         public static final int fullscreen=0x7f050003;
         public static final int image1=0x7f050029;
@@ -173,7 +174,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int left=0x7f050000;
         public static final int linearLayout=0x7f050006;
         public static final int linearLayout1=0x7f050021;
-        public static final int listView_left_category=0x7f050037;
+        public static final int listView_left_category=0x7f050039;
         public static final int login_btn=0x7f05001d;
         public static final int login_div=0x7f050018;
         public static final int login_image=0x7f050020;
@@ -197,16 +198,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f050001;
         public static final int saveNoteButton=0x7f050017;
         public static final int selected_view=0x7f050005;
-        public static final int slidingmenumain=0x7f050038;
-        public static final int tableNum=0x7f050035;
+        public static final int slidingmenumain=0x7f05003a;
+        public static final int tableNum=0x7f050037;
         public static final int text1=0x7f050022;
         public static final int text2=0x7f050023;
         public static final int text3=0x7f050024;
-        public static final int type_email=0x7f050036;
+        public static final int type_email=0x7f050038;
         public static final int username_edit=0x7f05001a;
         public static final int userpass_edit=0x7f05001c;
         public static final int vPager=0x7f050026;
         public static final int viewNoteScreen=0x7f050033;
+        public static final int visitedCheck=0x7f050036;
     }
     public static final class integer {
         public static final int num_cols=0x7f070000;

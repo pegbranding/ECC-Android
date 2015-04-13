@@ -54,9 +54,21 @@ public class CompanyArrayAdapter extends ArrayAdapter implements Filterable{
         if (c != null) {
             TextView labelView = (TextView) rowView.findViewById(R.id.label);
             TextView valueView = (TextView) rowView.findViewById(R.id.tableNum);
+            TextView star = (TextView) rowView.findViewById(R.id.favoriteStar);
+            TextView check = (TextView) rowView.findViewById(R.id.visitedCheck);
 
             if (labelView != null) {
                 labelView.setText(CompanyList.companyList.get(position).getName());
+                if (CompanyList.companyList.get(position).getFavorited() == true) {
+                    star.setText("\u2606");
+                } else {
+                    star.setText("");
+                }
+                if (CompanyList.companyList.get(position).getVisited() == true) {
+                    check.setText("\u2713");
+                } else {
+                    check.setText("");
+                }
             }
             if (valueView != null) {
                 valueView.setText(CompanyList.companyList.get(position).getTableNum());

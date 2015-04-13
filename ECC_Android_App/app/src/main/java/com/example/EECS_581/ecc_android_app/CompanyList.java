@@ -111,6 +111,7 @@ public class CompanyList extends Fragment {
         for (int i = 0; i < companyList.size(); i++) {
             if (companyList.get(i).getName().equals(st)) {
                 companyList.get(i).setVisited(b);
+                cadapter.notifyDataSetChanged();
             }
         }
     }
@@ -119,6 +120,7 @@ public class CompanyList extends Fragment {
         for (int i = 0; i < companyList.size(); i++) {
             if (companyList.get(i).getName().equals(st)) {
                 companyList.get(i).setFavorited(b);
+                cadapter.notifyDataSetChanged();
             }
         }
     }
@@ -233,8 +235,6 @@ public class CompanyList extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     int itemPosition = i;
                     String itemValue = companyList.get(itemPosition).getName();
-                    System.out.println("ItemValue: " + companyList.get(itemPosition).getName());
-                    System.out.println("OTHERVALUE: " + cadapter.filteredCompanyItemsArray.get(itemPosition).getName());
 
                     int index = findIndex(companyList, itemValue);
 

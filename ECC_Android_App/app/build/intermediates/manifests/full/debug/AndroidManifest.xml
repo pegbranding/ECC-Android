@@ -30,13 +30,15 @@
             android:label="@string/app_name" />
         <activity
             android:name="com.example.EECS_581.ecc_android_app.MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.example.EECS_581.ecc_android_app.GetPassword"
             android:label="@string/app_name" />
         <activity
             android:name="com.example.EECS_581.ecc_android_app.CompanyList"
-            android:label="@string/title_activity_company_list" >
+            android:label="@string/title_activity_company_list"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.example.EECS_581.ecc_android_app.Map"
