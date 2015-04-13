@@ -6,20 +6,15 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.EECS_581.ecc_android_app.Notes">
 
-    <!-- For the below comments, VF == ViewFlipper. -->
-    <!-- Also, XML element data is ordered in the following fashion:
-        1. ID
-        2. Content (text, etc.)
-        3. Formatting (of content. Example: font size.)
-        4. Layout parameters.
-        -->
+    <!-- The below View Flipper changes the view between the two primary states of the Notes
+         section. -->
 
     <ViewFlipper
         android:id="@+id/notesViewFlipper"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <!-- First VF element(notesList): see saved notes and a button to make new ones.-->
+        <!-- Primary State: View Notes List -->
         <RelativeLayout
             android:id="@+id/notesListScreen"
             android:layout_width="fill_parent"
@@ -59,81 +54,85 @@
 
         </RelativeLayout>
 
-        <!-- Second VF element: compose a new note, and a save button.-->
-        <RelativeLayout
-            android:id="@+id/composeNoteScreen"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <TextView
-                android:id="@+id/noteTitleTextView"
-                android:text="@string/note_title"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:id="@+id/noteTitleEditView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/noteTitleTextView" />
-
-            <TextView
-                android:id="@+id/noteBodyTextView"
-                android:text="@string/note_body"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/noteTitleEditView" />
-
-            <EditText
-                android:id="@+id/noteBodyEditView"
-                android:gravity="top"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/saveNoteButton"
-                android:layout_below="@+id/noteBodyTextView" />
-
-            <Button
-                android:id="@+id/saveNoteButton"
-                android:text="@string/save_note"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/discardDraftButton" />
-
-            <Button
-                android:id="@+id/discardDraftButton"
-                android:text="@string/discard_draft"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-        </RelativeLayout>
-
-        <!-- Third VF element(viewNote): see the full contents of a selected note, and an edit
-        button. -->
-
-        <RelativeLayout
+        <!-- Secondary State: View Individual Note -->
+        <LinearLayout
             android:id="@+id/viewNoteScreen"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <!-- TODO COMPLETE! -->
+            <LinearLayout
+                android:id="@+id/noteTextArea"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/noteTitleTextView"
+                    android:text="@string/note_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/noteTitleEditView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/noteBodyTextView"
+                    android:text="@string/note_body"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:id="@+id/noteBodyEditView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/noteButtonArea"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/saveNoteButton"
+                    android:text="@string/save_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/discardDraftButton"
+                    android:text="@string/discard_draft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/editNoteButton"
+                    android:text="@string/edit_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/deleteNoteButton"
+                    android:text="@string/delete_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </ViewFlipper>
-
 </RelativeLayout>
-<!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/layout/activity_notes.xml -->
+<!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/layout/activity_notes.xml -->

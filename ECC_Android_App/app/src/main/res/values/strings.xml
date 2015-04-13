@@ -39,6 +39,8 @@
     <string name="emptyNoteDialogTitle">Invalid Note</string>
     <string name="emptyNoteDialogMessage">Please create both a title and body text for your note.</string>
     <string name="emptyNoteDialogOK">OK</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="delete_note">Delete Note</string>
 
     <!--
     <string name="titleTagStart">|title|</string>

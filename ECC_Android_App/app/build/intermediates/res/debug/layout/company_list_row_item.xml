@@ -2,25 +2,54 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent" android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:paddingLeft="5dp"
-            android:textColor="#000000">
-        </TextView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                    android:id="@+id/label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:paddingLeft="5dp"
+                    android:textColor="#000000"
+                    android:text="Company Name">
+                </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/favoriteStar"
+                android:textSize="18sp"
+                android:paddingLeft="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/visitedCheck"
+                android:paddingLeft="15dp" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tableNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label"
-            android:textSize="10sp"
-            android:paddingLeft="5dp"
-            android:textColor="#444444"
-            >
-        </TextView>
+                android:id="@+id/tableNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label"
+                android:textSize="10sp"
+                android:paddingLeft="5dp"
+                android:textColor="#444444"
+                android:text="TableNum">
+            </TextView>
+
+    </LinearLayout>
 
 
-</RelativeLayout><!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/layout/company_list_row_item.xml -->
+</RelativeLayout><!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/layout/company_list_row_item.xml -->
