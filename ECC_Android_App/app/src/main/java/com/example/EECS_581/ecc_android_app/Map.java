@@ -36,7 +36,7 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 
 
 public class Map extends Fragment {
-    private String urlstring = new String("https://engr.drupal.ku.edu/sites/engr.drupal.ku.edu/files/files/svg.txt");
+    private String urlstring = new String("https://engr.drupal.ku.edu/sites/engr.drupal.ku.edu/files/files/png_maps.txt");
     ArrayList<String> urlarraylist = new ArrayList();
     View view;
     ViewFlipper ECCFlipper;
