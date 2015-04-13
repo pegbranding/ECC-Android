@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/values/leftMenuArrays.xml -->
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/leftMenuArrays.xml -->
     <eat-comment/>
     <string-array name="category_name">
         <item>Search</item>
@@ -9,7 +9,7 @@
         <item>Checked</item>
     </string-array>
     <declare-styleable name="SlidingMenu"><attr name="mode"><enum name="left" value="0"/><enum name="right" value="1"/></attr><attr format="reference" name="viewAbove"/><attr format="reference" name="viewBehind"/><attr format="dimension" name="behindOffset"/><attr format="dimension" name="behindWidth"/><attr format="float" name="behindScrollScale"/><attr name="touchModeAbove"><enum name="margin" value="0"/><enum name="fullscreen" value="1"/><enum name="none" value="2"/></attr><attr name="touchModeBehind"><enum name="margin" value="0"/><enum name="fullscreen" value="1"/><enum name="none" value="2"/></attr><attr format="reference" name="shadowDrawable"/><attr format="dimension" name="shadowWidth"/><attr format="boolean" name="fadeEnabled"/><attr format="float" name="fadeDegree"/><attr format="boolean" name="selectorEnabled"/><attr format="reference" name="selectorDrawable"/></declare-styleable>
-    <!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -17,13 +17,13 @@
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
     <dimen name="slidingmenu_offset">360dp</dimen>
-    <!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/exploded-aar/ECC_Android_App.libraries/SlidingMenu/unspecified/res/values/values.xml -->
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/exploded-aar/ECC_Android_App.libraries/SlidingMenu/unspecified/res/values/values.xml -->
     <eat-comment/>
     <item name="selected_view" type="id"/>
-    <!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <integer name="num_cols">1</integer>
-    <!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
@@ -59,7 +59,7 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
-    <!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- Customize your theme here. -->
