@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/libraries/SlidingMenu/assets"/></dataSet><dataSet config="debug"><source path="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/libraries/SlidingMenu/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/gbusing/ecc-senior-design-project/ECC_Android_App/libraries/SlidingMenu/assets"/></dataSet><dataSet config="debug"><source path="/home/gbusing/ecc-senior-design-project/ECC_Android_App/libraries/SlidingMenu/src/debug/assets"/></dataSet></merger>
