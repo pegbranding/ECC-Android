@@ -16,10 +16,6 @@ mongodb --rest interface is at http://54.149.119.218:28017 (mongodb is @
 
 sudo mongod --rest --fork --syslog
 
-
-
-LICENSE
-
 The MIT License (MIT)
 
 Copyright (c) 2015 Gordon Busing, Niko Colom, Eric Groves, Jiaxiang Li, with the University of Kansas
