@@ -1,6 +1,19 @@
-ECC_Android_App/app/build/
-.gradle/
-local.properties
 .DS_Store
 
+*.apk
+*.ap
+*.dex
+*.class
+bin/
+gen/
+local.properties
+Thumbs.db
+.DS_Store
+.classpath
+.project
+.iml
+.idea
+.gradle
+build/
 
+ECC_Android_App/build/
