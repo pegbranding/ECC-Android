@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,22 +30,26 @@ import java.io.BufferedReader;
 import android.content.Intent;
 import java.io.File;
 import android.content.Context;
+import android.widget.SearchView;
 
 
 import org.json.JSONObject;
 import org.json.JSONArray;
+import android.text.TextWatcher;
+import android.text.Editable;
 
 import static com.example.EECS_581.ecc_android_app.R.layout.activity_company_list;
 
 
 public class CompanyList extends Fragment {
-    private String restURL = "http://54.149.119.218:28017/companylist/fall2014/";
+    private String restURL = "http://54.149.47.206:28017/companylist/fall2014/";
 
     public static ArrayList<Company> companyList = new ArrayList<Company> ();
 
     View view;
 
-    CompanyArrayAdapter cadapter;
+    EditText inputSearch;
+    public static CompanyArrayAdapter cadapter;
     ListView listview;
 
 
@@ -53,6 +58,27 @@ public class CompanyList extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(activity_company_list, container, false);
         listview = (ListView) view.findViewById(R.id.companyListView);
+        inputSearch = (EditText) view.findViewById(R.id.inputSearch);
+
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                CompanyList.this.cadapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
 
         new CallAPI().execute();
 
@@ -207,6 +233,8 @@ public class CompanyList extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     int itemPosition = i;
                     String itemValue = companyList.get(itemPosition).getName();
+                    System.out.println("ItemValue: " + companyList.get(itemPosition).getName());
+                    System.out.println("OTHERVALUE: " + cadapter.filteredCompanyItemsArray.get(itemPosition).getName());
 
                     int index = findIndex(companyList, itemValue);
 

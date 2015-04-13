@@ -6,41 +6,26 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.EECS_581.ecc_android_app.CompanyList">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/companyListView"
-        android:clickable="true"
-        android:choiceMode="singleChoice"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/checkBox" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="All Companies"
-        android:id="@+id/checkBox"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:checked="false" />
+        <EditText android:id="@+id/inputSearch"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search Companies.."
+            android:inputType="textVisiblePassword"/>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Favorites"
-        android:id="@+id/checkBox2"
-        android:checked="false"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/checkBox" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Visited"
-        android:id="@+id/checkBox3"
-        android:layout_above="@+id/companyListView"
-        android:layout_toRightOf="@+id/checkBox2"
-        android:checked="false" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/companyListView"
+            android:clickable="true"
+            android:choiceMode="singleChoice"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/checkBox" />
+    </LinearLayout>
 
 </RelativeLayout>
 <!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/layout/activity_company_list.xml -->
