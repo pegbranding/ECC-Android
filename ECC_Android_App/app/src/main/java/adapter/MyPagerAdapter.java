@@ -7,9 +7,8 @@ import android.view.View;
 
 import java.util.List;
 
-
 /**
- * Created by Jiaxiang Li on 2/7/2015.
+ * Created by Jiaxiang Li on 4/18/2015.
  */
 public class MyPagerAdapter extends PagerAdapter{
     public List<View> mListViews;
@@ -55,5 +54,4 @@ public class MyPagerAdapter extends PagerAdapter{
     @Override
     public void startUpdate(View arg0) {
     }
-
 }

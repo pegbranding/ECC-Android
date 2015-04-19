@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="list_item_title">#fff</color>
+</resources>

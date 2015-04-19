@@ -13,7 +13,7 @@ import android.view.WindowManager;
 /**
  * Created by Jiaxiang Li on 2/6/2015.
  */
-public class SlidingLayout extends RelativeLayout implements View.OnTouchListener{
+/*public class SlidingLayout extends RelativeLayout implements View.OnTouchListener{
 
     //THE VELOCITY OF MOVE FINGER TO MANIPULATE THE SLIDING BAR
     public static final int SNAP_VELOCITY=200;
@@ -289,4 +289,4 @@ public class SlidingLayout extends RelativeLayout implements View.OnTouchListene
         }
     }
     
-}
+}*/

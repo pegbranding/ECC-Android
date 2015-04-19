@@ -2,16 +2,20 @@ package com.example.EECS_581.ecc_android_app;
 
 import android.app.Activity;
 import android.app.ActivityGroup;
+//import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -34,7 +38,7 @@ import java.util.List;
 import adapter.MyPagerAdapter;
 
 
-public class MainActivity extends SlidingFragmentActivity{
+public class MainActivity extends SlidingFragmentActivity {
 
     //The ViewPager content
     private ViewPager mPager;
@@ -55,7 +59,7 @@ public class MainActivity extends SlidingFragmentActivity{
 
     private int bmpW;
     
-    private SlidingMenu leftContent;
+    private SlidingMenu leftMenu;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -74,20 +78,24 @@ public class MainActivity extends SlidingFragmentActivity{
 
 
     public void initSlidingMenu(){
-        leftContent=new SlidingMenu(this);
-        leftContent.setMode(SlidingMenu.LEFT);
-        leftContent.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        leftContent.setShadowWidthRes(R.dimen.shadow_width);
-        leftContent.setShadowDrawable(R.drawable.shadow);
-        leftContent.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        leftContent.setFadeDegree(0.35f);
-        //setContentView(R.layout.activity_main);
-        //setBehindContentView(R.layout.leftmenu);
-        leftContent.attachToActivity(this,SlidingMenu.SLIDING_CONTENT);
-        leftContent.setMenu(R.layout.leftmenu);
+        leftMenu=getSlidingMenu();
+        leftMenu.setMode(SlidingMenu.LEFT);
+        leftMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        leftMenu.setShadowWidthRes(R.dimen.shadow_width);
+        leftMenu.setShadowDrawable(R.drawable.shadow);
+        leftMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        leftMenu.setFadeDegree(0.35f);
 
-        //leftMenu=new SlidingMenu(this);
+        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.left_menu,new MenuFragment());
+        //fragmentTransaction.replace(R.id.content,new HomeFragment());
+
+        fragmentTransaction.commit();
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
 
 
     private void InitTextView(){
@@ -187,5 +195,6 @@ public class MainActivity extends SlidingFragmentActivity{
         @Override
         public void onPageScrollStateChanged(int arg0) {
         }
+
     }
 }

@@ -55,5 +55,6 @@
 
     <string name="title_activity_company_detail">CompanyDetail</string>
     <string name="hello_world">Hello world!</string>
+    <string name="desc_list_item_icon">Menu</string>
 
 </resources>

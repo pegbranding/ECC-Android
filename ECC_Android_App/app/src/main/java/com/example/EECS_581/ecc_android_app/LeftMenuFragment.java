@@ -11,7 +11,7 @@ import android.widget.ListView;
 /**
  * Created by Jiaxiang Li on 2/15/2015.
  */
-public class LeftMenuFragment extends Fragment {
+/*public class LeftMenuFragment extends Fragment {
     private View mView;
     private Context mContext;
     private ListView listView_left_category;
@@ -46,4 +46,4 @@ public class LeftMenuFragment extends Fragment {
     }
 
 
-}
+}*/

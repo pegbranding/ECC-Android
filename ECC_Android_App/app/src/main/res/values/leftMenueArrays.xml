@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nav_items">
+        <item>Search</item>
+        <item>All</item>
+        <item>Favourite</item>
+        <item>Checked</item>
+    </string-array>
+    <array name="nav_icons">
+        <item>@drawable/searching</item>
+        <item>@drawable/all_index</item>
+        <item>@drawable/favourite</item>
+        <item>@drawable/checked</item>
+    </array>
+</resources>

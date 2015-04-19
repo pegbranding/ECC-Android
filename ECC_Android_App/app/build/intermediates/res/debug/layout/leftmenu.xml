@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <!--<TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="left menu"
-        android:id="@+id/textView3"
-        android:layout_gravity="center_horizontal" />-->
-
-    <ListView
-        android:id="@+id/listView_left_category"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:cacheColorHint="#00000000">
-
-        </ListView>
-</LinearLayout><!-- From: file:/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/src/main/res/layout/leftmenu.xml -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/left_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" /><!-- From: file:/C:/Users/Jiaxiang%20Li/Work_Station/eecs581/SeniorDesign/ECC_Android_App/app/src/main/res/layout/leftmenu.xml -->

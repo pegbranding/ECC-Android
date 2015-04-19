@@ -1,6 +1,8 @@
 -- Merging decision tree log ---
 manifest
 ADDED from AndroidManifest.xml:2:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
 	package
 		ADDED from AndroidManifest.xml:3:5
 		INJECTED from AndroidManifest.xml:0:0
@@ -8,8 +10,6 @@ ADDED from AndroidManifest.xml:2:1
 	android:versionName
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
-	xmlns:android
-		ADDED from AndroidManifest.xml:2:11
 	android:versionCode
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
@@ -56,10 +56,10 @@ ADDED from AndroidManifest.xml:22:9
 		ADDED from AndroidManifest.xml:23:13
 activity#com.example.EECS_581.ecc_android_app.MainActivity
 ADDED from AndroidManifest.xml:25:9
-	android:label
-		ADDED from AndroidManifest.xml:27:13
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:28:13
+	android:label
+		ADDED from AndroidManifest.xml:27:13
 	android:name
 		ADDED from AndroidManifest.xml:26:13
 activity#com.example.EECS_581.ecc_android_app.GetPassword
@@ -70,10 +70,10 @@ ADDED from AndroidManifest.xml:29:9
 		ADDED from AndroidManifest.xml:30:13
 activity#com.example.EECS_581.ecc_android_app.CompanyList
 ADDED from AndroidManifest.xml:32:9
-	android:label
-		ADDED from AndroidManifest.xml:34:13
 	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:35:13
+	android:label
+		ADDED from AndroidManifest.xml:34:13
 	android:name
 		ADDED from AndroidManifest.xml:33:13
 activity#com.example.EECS_581.ecc_android_app.Map
