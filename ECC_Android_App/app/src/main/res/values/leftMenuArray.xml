@@ -3,8 +3,8 @@
     <string-array name="nav_items">
         <item>Search</item>
         <item>All</item>
-        <item>Favourite</item>
-        <item>Checked</item>
+        <item>Favorites</item>
+        <item>Visited</item>
     </string-array>
     <array name="nav_icons">
         <item>@drawable/searching</item>

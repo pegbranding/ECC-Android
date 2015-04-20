@@ -2,6 +2,7 @@
 <items version="2" >
 
     <item
+<<<<<<< HEAD
         jar="/home/gbusing/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.3/a85588bec3e2c4584d593d3f15df1677321bca72/universal-image-loader-1.9.3.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -35,6 +36,13 @@
         revision="20.0.0"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
         <dex dex="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/library-2.4.0-84a447fba3f35a1a5595925a1f80b39273dbb466.jar" />
+=======
+        jar="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/exploded-aar/ECC_Android_App.libraries/SlidingMenu/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e3c0f680756b109555c1fcd3d8bc875b2ba63a64">
+        <dex dex="/Users/eric/Desktop/School/ECC_Capstone_Project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-f1acc59b4cffe82f91d23d5dc22537d9c8b241cd.jar" />
+>>>>>>> 79a785a6eab0801898999f4991d09d33f8aab779
     </item>
 
 </items>

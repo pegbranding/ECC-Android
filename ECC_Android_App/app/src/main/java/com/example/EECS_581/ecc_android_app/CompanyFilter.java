@@ -22,15 +22,34 @@ public class CompanyFilter extends Filter {
     protected FilterResults performFiltering(CharSequence constraint) {
         FilterResults result = new FilterResults();
         constraint = constraint.toString().toLowerCase();
+        final ArrayList<Company> original = new ArrayList<Company>(allValues);
+        final ArrayList<Company> filtered = new ArrayList<Company>();
 
         if (constraint == null || constraint.length() == 0) {
-            ArrayList<Company> list = new ArrayList<Company>(allValues);
             result.values = allValues;
             result.count = allValues.size();
-        } else {
-            final ArrayList<Company> original = new ArrayList<Company>(allValues);
-            final ArrayList<Company> filtered = new ArrayList<Company>();
 
+        } else if (constraint.equals("favorites")) {
+            for (int i = 0; i < original.size(); i++) {
+                final Company c = original.get(i);
+                if(c.getFavorited() == true) {
+                    filtered.add(c);
+                }
+            }
+            result.values = filtered;
+            result.count = filtered.size();
+
+        } else if (constraint.equals("visited")) {
+            for (int i = 0; i < original.size(); i++) {
+                final Company c = original.get(i);
+                if(c.getVisited() == true) {
+                    filtered.add(c);
+                }
+            }
+            result.values = filtered;
+            result.count = filtered.size();
+
+        } else {
             for (int i = 0; i < original.size(); i++) {
                 final Company c = original.get(i);
                 if (c.getName().toLowerCase().contains(constraint)) {
