@@ -30,8 +30,6 @@ public class MenuFragment extends Fragment {
     private TypedArray mNavmenuIconsTypeArray;
     private ArrayList<NavDrawerItem> mNavDrawerItems;
     private NavDrawerListAdapter mAdapter;
-    private SLMenuListOnItemClickListener mCallBack;
-    private int selected=-1;
 
     public void onAttach(Activity activity){
         /*try{
@@ -77,35 +75,24 @@ public class MenuFragment extends Fragment {
 
         mDrawerList.setAdapter(mAdapter);
 
-        //mDrawerList.setOnItemClickListener(this);
 
-        if(selected!=-1){
-            mDrawerList.setItemChecked(selected,true);
-            mDrawerList.setSelection(selected);
-        }else {
-            mDrawerList.setItemChecked(0,true);
-            mDrawerList.setSelection(0);
-        }
+        mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int itemPosition = i;
+                System.out.println("Selected: " + itemPosition);
+
+
+                if (itemPosition == 1) {
+                    CompanyList.cadapter.getFilter().filter("");
+                } else if (itemPosition == 2) {
+                    CompanyList.cadapter.getFilter().filter("favorites");
+                } else if (itemPosition == 3) {
+                    CompanyList.cadapter.getFilter().filter("visited");
+                }
+            }
+        });
 
     }
-
-
-    public void onItemClick(AdapterView<?> parent,View view,int position,long id){
-        mDrawerList.setItemChecked(position,true);
-        mDrawerList.setSelection(position);
-
-        if(mCallBack!=null){
-            mCallBack.selectItem(position,mNavMenuTitles[position]);
-        }
-
-        selected=position;
-    }
-
-
-    public interface SLMenuListOnItemClickListener{
-        public void selectItem(int postion,String title);
-    }
-
-
 
 }

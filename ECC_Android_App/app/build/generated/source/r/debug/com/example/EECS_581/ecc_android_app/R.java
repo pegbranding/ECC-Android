@@ -9,9 +9,8 @@ package com.example.EECS_581.ecc_android_app;
 
 public final class R {
     public static final class array {
-        public static final int category_name=0x7f040000;
-        public static final int nav_icons=0x7f040001;
-        public static final int nav_items=0x7f040002;
+        public static final int nav_icons=0x7f040000;
+        public static final int nav_items=0x7f040001;
     }
     public static final class attr {
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
