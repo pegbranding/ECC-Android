@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Jiaxiang Li\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\app\build\intermediates\pre-dexed\debug\library-2.4.0-7e1426280ad68a34fcc52197907261e9a06c660d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\app\build\intermediates\exploded-aar\it.sephiroth.android.library.imagezoom\imagezoom\2.1.1\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="8fbd4390c086423b591596e4b04a03e0e59b9397">
-        <dex dex="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\app\build\intermediates\pre-dexed\debug\classes-bc1dab058824374dc7d73fff37763a2d459d68dd.jar" />
-    </item>
-    <item
-        jar="C:\Users\Jiaxiang Li\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.3\a85588bec3e2c4584d593d3f15df1677321bca72\universal-image-loader-1.9.3.jar"
+        jar="/home/gbusing/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.3/a85588bec3e2c4584d593d3f15df1677321bca72/universal-image-loader-1.9.3.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
-        <dex dex="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-54db451efe5a04ca890698eb4afb57c286080d29.jar" />
+        <dex dex="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.3-9f93303056ca9625175e7fb2df5e443f90e7231c.jar" />
     </item>
     <item
-        jar="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\app\build\intermediates\exploded-aar\ECC_Android_App.libraries\SlidingMenu\unspecified\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="258f2724a336888b4f7c31fa6f34c751121f001e">
-        <dex dex="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\app\build\intermediates\pre-dexed\debug\classes-26627b3afc92b205e7c2e6f811437acda49bbcf4.jar" />
-    </item>
-    <item
-        jar="C:\Users\Jiaxiang Li\Work_Station\androidSDK\extras\android\m2repository\com\android\support\support-v4\13.0.0\support-v4-13.0.0.jar"
+        jar="/home/gbusing/adt-bundle-linux-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-v4/13.0.0/support-v4-13.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="3fe75433da602500cc71fcc1c46e5550291dd45d">
-        <dex dex="C:\Users\Jiaxiang Li\Work_Station\eecs581\SeniorDesign\ECC_Android_App\app\build\intermediates\pre-dexed\debug\support-v4-13.0.0-0ccd48cbd37ca9fcd4659aa15349f6d454e9de11.jar" />
+        <dex dex="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/support-v4-13.0.0-dc2b4ebaf9417301cd9c50ba7cab09d65f1a93c4.jar" />
+    </item>
+    <item
+        jar="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/exploded-aar/ECC_Android_App.libraries/SlidingMenu/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="45506dca52659e5bffb0e25ed95a11888eb6a0da">
+        <dex dex="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-f073d570ccb8c75a9e3f99c2a50922bd37aefd1a.jar" />
+    </item>
+    <item
+        jar="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/exploded-aar/it.sephiroth.android.library.imagezoom/imagezoom/2.1.1/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8fbd4390c086423b591596e4b04a03e0e59b9397">
+        <dex dex="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/classes-1081335b6d75ec51d80487c1bf87217e40aac575.jar" />
+    </item>
+    <item
+        jar="/home/gbusing/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/build/intermediates/pre-dexed/debug/library-2.4.0-84a447fba3f35a1a5595925a1f80b39273dbb466.jar" />
     </item>
 
 </items>

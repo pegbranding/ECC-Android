@@ -2,4 +2,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" android:showAsAction="never" />
 </menu>
-<!-- From: file:/C:/Users/Jiaxiang%20Li/Work_Station/eecs581/SeniorDesign/ECC_Android_App/app/src/main/res/menu/global.xml -->
+<!-- From: file:/home/gbusing/ecc-senior-design-project/ECC_Android_App/app/src/main/res/menu/global.xml -->
