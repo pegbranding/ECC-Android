@@ -24,14 +24,28 @@ public class NotesFilter extends Filter {
         constraint = constraint.toString().toLowerCase();
         final ArrayList<Note> original = new ArrayList<Note>(allNotes);
         final ArrayList<Note> filtered = new ArrayList<Note>();
+        String constraintString = constraint.toString();
 
         if (constraint == null || constraint.length() == 0) {
             result.values = allNotes;
             result.count = allNotes.size();
-        } else if (constraint.equals("interviews")){
-            //TODO filters
-            result.values = allNotes;
-            result.count = allNotes.size();
+        } else {
+            for (int i = 0; i < original.size(); i++) {
+                final Note n = original.get(i);
+                System.out.println("Type: " + n.getType());
+                if(n.getType().equals("Interview") && constraintString.contains("interviews")) {
+                    filtered.add(n);
+                }
+                if(n.getType().equals("Info Session") && constraintString.contains("info_sessions")) {
+                    filtered.add(n);
+                }
+                if(n.getType().equals("Deadline") && constraintString.contains("deadlines")) {
+                    filtered.add(n);
+                }
+
+            }
+            result.values = filtered;
+            result.count = filtered.size();
         }
 
         return result;

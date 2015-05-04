@@ -3,12 +3,9 @@ package com.example.EECS_581.ecc_android_app;
 
 import android.app.AlertDialog;
 import android.text.method.KeyListener;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,35 +15,22 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.os.AsyncTask;
-import java.net.URL;
-import java.net.HttpURLConnection;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import android.content.Intent;
 import java.io.File;
-import android.content.Context;
-import android.widget.SearchView;
 
 
 import org.json.JSONObject;
 import org.json.JSONArray;
-import android.text.TextWatcher;
-import android.text.Editable;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -82,7 +66,7 @@ public class Notes extends Fragment {
 
     boolean interviewsCheckbox = true;
     boolean infoSessionsCheckbox = true;
-    
+    boolean deadlinesCheckbox = true;
 
     //Buttons for user control of the activity. Self explanatory.
     private Button newNoteButton;
@@ -278,6 +262,7 @@ public class Notes extends Fragment {
             noteArchiveOutput.write(container.toString().getBytes());
 
             Note n = new Note(title,body,company_name,type);
+            NotesArrayAdapter.allNotesArray.add(n);
             notesList.add(n);
             notesAdapter.notifyDataSetChanged();
 
@@ -297,7 +282,6 @@ public class Notes extends Fragment {
 
     void deleteNote(String title, String body) {
         try {
-
             File file = getActivity().getBaseContext().getFileStreamPath("notes");
             JSONArray arr = getNotes();
             JSONArray updated = new JSONArray();
@@ -317,7 +301,6 @@ public class Notes extends Fragment {
             FileOutputStream noteArchiveOutput = new FileOutputStream(noteArchiveDataFile);
             noteArchiveOutput.write(container.toString().getBytes());
             noteArchiveOutput.close();
-
 
             for (int j = 0; j < notesList.size(); j++) {
                 if (notesList.get(j).getTitle().equals(title) && notesList.get(j).getBody().equals(body)) {
@@ -471,13 +454,18 @@ public class Notes extends Fragment {
                     JSONObject notesJson = new JSONObject(result);
                     JSONArray arr = notesJson.getJSONArray("notesArray");
 
-                    for (int i = 1; i < arr.length(); i++) {
+                    for (int i = 0; i < arr.length(); i++) {
                         JSONObject curNote = (JSONObject) arr.get(i);
+                        String noteTitle="", noteBody="", company_name="", type="";
 
-                        String noteTitle = ((String) curNote.get("title"));
-                        String noteBody = ((String) curNote.get("body"));
-                        String company_name = ((String) curNote.get("company_name"));
-                        String type = ((String) curNote.get("type"));
+                        if (curNote.has("title"))
+                            noteTitle = ((String) curNote.get("title"));
+                        if (curNote.has("body"))
+                            noteBody = ((String) curNote.get("body"));
+                        if (curNote.has("company_name"))
+                            company_name = ((String) curNote.get("company_name"));
+                        if (curNote.has("type"))
+                            type = ((String) curNote.get("type"));
 
                         Note n = new Note(noteTitle, noteBody, company_name, type);
                         notesList.add(n);
@@ -543,6 +531,7 @@ public class Notes extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                     System.out.println("interviews check is now: " + isChecked);
+                    interviewsCheckbox = isChecked;
                     setFilter();
                 }
             });
@@ -552,6 +541,7 @@ public class Notes extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                     System.out.println("info check is now: " + isChecked);
+                    infoSessionsCheckbox = isChecked;
                     setFilter();
                 }
             });
@@ -561,6 +551,7 @@ public class Notes extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                     System.out.println("deadlines check is now: " + isChecked);
+                    deadlinesCheckbox = isChecked;
                     setFilter();
                 }
             });
@@ -568,6 +559,16 @@ public class Notes extends Fragment {
 
         void setFilter() {
             String filter = "";
+            if (interviewsCheckbox) {
+                filter = filter + "interviews ";
+            }
+            if (infoSessionsCheckbox) {
+                filter = filter + "info_sessions ";
+            }
+            if (deadlinesCheckbox) {
+                filter = filter + "deadlines ";
+            }
+            Notes.this.notesAdapter.getFilter().filter(filter);
         }
     }
 
