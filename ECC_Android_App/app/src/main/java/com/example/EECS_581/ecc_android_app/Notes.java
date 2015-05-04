@@ -47,6 +47,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -73,6 +74,9 @@ public class Notes extends Fragment {
     EditText noteBody;
     EditText noteCompanyName;
     EditText noteType;
+
+    Spinner companyListSpinner;
+    Spinner noteTypeSpinner;
 
     //Buttons for user control of the activity. Self explanatory.
     private Button newNoteButton;
@@ -484,8 +488,26 @@ public class Notes extends Fragment {
             initializeNotesClass();
             ListView listView = (ListView) view.findViewById(R.id.notesListView);
 
-            notesAdapter = new NotesArrayAdapter(getActivity(), notesList);
 
+            companyListSpinner = (Spinner) view.findViewById(R.id.companySpinner);
+            ArrayList<Company> companies = CompanyList.companyList;
+            ArrayList<String> companyNames = new ArrayList<String>();
+            for (int i = 0; i < companies.size(); i++) {
+                companyNames.add(companies.get(i).getName());
+            }
+            ArrayAdapter<String> nameAdapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_spinner_item, companyNames);
+            companyListSpinner.setAdapter(nameAdapter);
+
+            noteTypeSpinner = (Spinner) view.findViewById(R.id.typeSpinner);
+            String[] items = new String[] { "Interview", "Info Session", "Deadline" };
+            ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_spinner_item, items);
+            noteTypeSpinner.setAdapter(typeAdapter);
+
+
+
+            notesAdapter = new NotesArrayAdapter(getActivity(), notesList);
             listView.setAdapter(notesAdapter);
 
 

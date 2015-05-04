@@ -20,37 +20,50 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:stretchColumns="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-                <TableRow
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/make_new_note_button"
-                        android:text="@string/make_new_note"
-                        android:layout_column="1"
-                        android:layout_span="2"
+                    <CheckBox
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
+                        android:layout_height="wrap_content"
+                        android:text="Interviews"
+                        android:id="@+id/interviewsCheckbox" />
 
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <!-- This ListView shows all saved notes. -->
-                    <ListView
-                        android:id="@+id/notesListView"
-                        android:layout_column="1"
+                    <CheckBox
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
+                        android:layout_height="wrap_content"
+                        android:text="Info Sessions"
+                        android:id="@+id/infoCheckbox" />
 
-            </TableLayout>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deadlines"
+                        android:id="@+id/deadlinesCheckbox" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/make_new_note_button"
+                    android:text="@string/make_new_note"
+                    android:layout_column="1"
+                    android:layout_span="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ListView
+                    android:id="@+id/notesListView"
+                    android:layout_column="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -68,6 +81,16 @@
                 android:layout_weight="2"
                 android:orientation="vertical">
 
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/typeSpinner" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/companySpinner" />
+
                 <TextView
                     android:id="@+id/noteTitleTextView"
                     android:text="@string/note_title"
@@ -77,8 +100,8 @@
 
                 <EditText
                     android:id="@+id/noteTitleEditView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/noteBodyTextView"
@@ -89,7 +112,7 @@
 
                 <EditText
                     android:id="@+id/noteBodyEditView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
@@ -101,33 +124,45 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/saveNoteButton"
-                    android:text="@string/save_note"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/discardDraftButton"
-                    android:text="@string/discard_draft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    <Button
+                        android:id="@+id/saveNoteButton"
+                        android:text="@string/save_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
 
-                <Button
-                    android:id="@+id/editNoteButton"
-                    android:text="@string/edit_note"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    <Button
+                        android:id="@+id/discardDraftButton"
+                        android:text="@string/discard_draft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                </LinearLayout>
 
-                <Button
-                    android:id="@+id/deleteNoteButton"
-                    android:text="@string/delete_note"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/editNoteButton"
+                        android:text="@string/edit_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/deleteNoteButton"
+                        android:text="@string/delete_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                </LinearLayout>
 
             </LinearLayout>
 

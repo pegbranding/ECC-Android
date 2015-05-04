@@ -24,7 +24,7 @@
             android:clickable="true"
             android:choiceMode="singleChoice"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/checkBox" />
+            android:layout_below="@+id/deadlinesCheckbox" />
 
     </LinearLayout>
 
