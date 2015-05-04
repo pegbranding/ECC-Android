@@ -48,9 +48,13 @@ public class NotesArrayAdapter extends ArrayAdapter implements Filterable {
         Note n = Notes.notesList.get(position);
 
         if (n != null) {
-            TextView bodyPreview = (TextView) rowView.findViewById(R.id.notesBody);
-            if (bodyPreview != null) {
-                bodyPreview.setText(Notes.notesList.get(position).getTitle());
+            TextView titlePreview = (TextView) rowView.findViewById(R.id.notesTitle);
+            if (titlePreview != null) {
+                titlePreview.setText(Notes.notesList.get(position).getTitle());
+            }
+            TextView typePreview = (TextView) rowView.findViewById(R.id.noteType);
+            if (typePreview != null) {
+                typePreview.setText(Notes.notesList.get(position).getType());
             }
         }
 

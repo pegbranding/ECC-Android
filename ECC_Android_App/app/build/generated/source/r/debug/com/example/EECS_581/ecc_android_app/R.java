@@ -158,8 +158,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shadow=0x7f02000f;
     }
     public static final class id {
-        public static final int action_example=0x7f060048;
-        public static final int action_settings=0x7f060049;
+        public static final int action_example=0x7f060049;
+        public static final int action_settings=0x7f06004a;
         public static final int companyDetailDegreeLevels=0x7f06000f;
         public static final int companyDetailECCTable=0x7f06000a;
         public static final int companyDetailFavorite=0x7f060008;
@@ -209,9 +209,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int noteTextArea=0x7f060034;
         public static final int noteTitleEditView=0x7f060014;
         public static final int noteTitleTextView=0x7f060013;
-        public static final int notesBody=0x7f060046;
+        public static final int noteType=0x7f060047;
         public static final int notesListScreen=0x7f06002e;
         public static final int notesListView=0x7f060032;
+        public static final int notesTitle=0x7f060046;
         public static final int notesViewFlipper=0x7f06002d;
         public static final int previousbutton=0x7f06002b;
         public static final int progressBar=0x7f06002c;
@@ -219,7 +220,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f060001;
         public static final int saveNoteButton=0x7f060017;
         public static final int selected_view=0x7f060005;
-        public static final int slidingmenumain=0x7f060047;
+        public static final int slidingmenumain=0x7f060048;
         public static final int tableNum=0x7f06003e;
         public static final int text1=0x7f060022;
         public static final int text2=0x7f060023;

@@ -176,6 +176,8 @@ public class Notes extends Fragment {
 
                 String titleToSave = noteTitle.getText().toString();
                 String bodyToSave = noteBody.getText().toString();
+                String companyNameToSave = companyListSpinner.getSelectedItem().toString();
+                String typeToSave = noteTypeSpinner.getSelectedItem().toString();
 
                 //If either field is empty, notify the user and do not save the note.
                 if(titleToSave.trim().isEmpty() || bodyToSave.trim().isEmpty()){
@@ -183,7 +185,7 @@ public class Notes extends Fragment {
                 }
                 else {
                     //Otherwise, save the note, and then...
-                    saveNoteRecord(titleToSave,bodyToSave);
+                    saveNoteRecord(titleToSave,bodyToSave,companyNameToSave, typeToSave);
 
                     //Flush the EditText fields. Next...
                     noteTitle.setText("");
@@ -250,8 +252,7 @@ public class Notes extends Fragment {
         switchNoteViewMode("View");//View mode active by default.
     }
 
-    void saveNoteRecord(String title, String body){
-        System.out.println("Want to save..." + title + "  body: " + body);
+    void saveNoteRecord(String title, String body, String company_name, String type){
         try {
 
             File file = getActivity().getBaseContext().getFileStreamPath("notes");
@@ -263,14 +264,14 @@ public class Notes extends Fragment {
             JSONObject newNote = new JSONObject();
             newNote.put("title", title);
             newNote.put("body", body);
-            newNote.put("company_name", "company");
-            newNote.put("type","type");
+            newNote.put("company_name", company_name);
+            newNote.put("type",type);
             arr.put(newNote);
             JSONObject container = new JSONObject();
             container.put("notesArray", arr);
             noteArchiveOutput.write(container.toString().getBytes());
 
-            Note n = new Note(title,body,"company","type");
+            Note n = new Note(title,body,company_name,type);
             notesList.add(n);
             notesAdapter.notifyDataSetChanged();
 

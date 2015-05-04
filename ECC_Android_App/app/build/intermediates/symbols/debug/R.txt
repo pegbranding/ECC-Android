@@ -38,8 +38,8 @@ int drawable ic_drawer 0x7f02000c
 int drawable ic_launcher 0x7f02000d
 int drawable searching 0x7f02000e
 int drawable shadow 0x7f02000f
-int id action_example 0x7f060048
-int id action_settings 0x7f060049
+int id action_example 0x7f060049
+int id action_settings 0x7f06004a
 int id companyDetailDegreeLevels 0x7f06000f
 int id companyDetailECCTable 0x7f06000a
 int id companyDetailFavorite 0x7f060008
@@ -89,9 +89,10 @@ int id noteButtonArea 0x7f060037
 int id noteTextArea 0x7f060034
 int id noteTitleEditView 0x7f060014
 int id noteTitleTextView 0x7f060013
-int id notesBody 0x7f060046
+int id noteType 0x7f060047
 int id notesListScreen 0x7f06002e
 int id notesListView 0x7f060032
+int id notesTitle 0x7f060046
 int id notesViewFlipper 0x7f06002d
 int id previousbutton 0x7f06002b
 int id progressBar 0x7f06002c
@@ -99,7 +100,7 @@ int id register_link 0x7f06001e
 int id right 0x7f060001
 int id saveNoteButton 0x7f060017
 int id selected_view 0x7f060005
-int id slidingmenumain 0x7f060047
+int id slidingmenumain 0x7f060048
 int id tableNum 0x7f06003e
 int id text1 0x7f060022
 int id text2 0x7f060023
