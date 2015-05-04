@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -77,6 +79,10 @@ public class Notes extends Fragment {
 
     Spinner companyListSpinner;
     Spinner noteTypeSpinner;
+
+    boolean interviewsCheckbox = true;
+    boolean infoSessionsCheckbox = true;
+    
 
     //Buttons for user control of the activity. Self explanatory.
     private Button newNoteButton;
@@ -489,24 +495,8 @@ public class Notes extends Fragment {
             initializeNotesClass();
             ListView listView = (ListView) view.findViewById(R.id.notesListView);
 
-
-            companyListSpinner = (Spinner) view.findViewById(R.id.companySpinner);
-            ArrayList<Company> companies = CompanyList.companyList;
-            ArrayList<String> companyNames = new ArrayList<String>();
-            for (int i = 0; i < companies.size(); i++) {
-                companyNames.add(companies.get(i).getName());
-            }
-            ArrayAdapter<String> nameAdapter = new ArrayAdapter<String>(getActivity(),
-                    android.R.layout.simple_spinner_item, companyNames);
-            companyListSpinner.setAdapter(nameAdapter);
-
-            noteTypeSpinner = (Spinner) view.findViewById(R.id.typeSpinner);
-            String[] items = new String[] { "Interview", "Info Session", "Deadline" };
-            ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
-                    android.R.layout.simple_spinner_item, items);
-            noteTypeSpinner.setAdapter(typeAdapter);
-
-
+            setupSpinners();
+            setupCheckBoxes();
 
             notesAdapter = new NotesArrayAdapter(getActivity(), notesList);
             listView.setAdapter(notesAdapter);
@@ -527,6 +517,57 @@ public class Notes extends Fragment {
 
                 }
             });
+        }
+
+        protected void setupSpinners() {
+            companyListSpinner = (Spinner) view.findViewById(R.id.companySpinner);
+            ArrayList<Company> companies = CompanyList.companyList;
+            ArrayList<String> companyNames = new ArrayList<String>();
+            for (int i = 0; i < companies.size(); i++) {
+                companyNames.add(companies.get(i).getName());
+            }
+            ArrayAdapter<String> nameAdapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_spinner_item, companyNames);
+            companyListSpinner.setAdapter(nameAdapter);
+
+            noteTypeSpinner = (Spinner) view.findViewById(R.id.typeSpinner);
+            String[] items = new String[] { "Interview", "Info Session", "Deadline" };
+            ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_spinner_item, items);
+            noteTypeSpinner.setAdapter(typeAdapter);
+        }
+
+        protected void setupCheckBoxes() {
+            CheckBox interviews = (CheckBox) view.findViewById (R.id.interviewsCheckbox);
+            interviews.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                    System.out.println("interviews check is now: " + isChecked);
+                    setFilter();
+                }
+            });
+
+            CheckBox info = (CheckBox) view.findViewById (R.id.infoCheckbox);
+            info.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                    System.out.println("info check is now: " + isChecked);
+                    setFilter();
+                }
+            });
+
+            CheckBox deadlines = (CheckBox) view.findViewById (R.id.deadlinesCheckbox);
+            deadlines.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                    System.out.println("deadlines check is now: " + isChecked);
+                    setFilter();
+                }
+            });
+        }
+
+        void setFilter() {
+            String filter = "";
         }
     }
 

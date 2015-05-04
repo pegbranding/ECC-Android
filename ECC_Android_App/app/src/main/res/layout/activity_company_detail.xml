@@ -6,93 +6,99 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.EECS_581.ecc_android_app.CompanyDetail">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
-        android:weightSum="1"
-        android:id="@+id/linearLayout">
+        android:id="@+id/scrollView" >
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="right"
-            android:layout_weight="0.04">
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:weightSum="1"
+            android:id="@+id/linearLayout">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Visited"
-                android:id="@+id/companyDetailVisited"
-                android:checked="false"
-                android:clickable="true" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="right"
+                android:layout_weight="0.04">
 
-            <CheckBox
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Visited"
+                    android:id="@+id/companyDetailVisited"
+                    android:checked="false"
+                    android:clickable="true" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Favorite"
+                    android:id="@+id/companyDetailFavorite"
+                    android:checked="false"
+                    android:clickable="true" />
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Favorite"
-                android:id="@+id/companyDetailFavorite"
-                android:checked="false"
-                android:clickable="true" />
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Company Name: "
+                android:id="@+id/companyDetailName"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Table: "
+                android:id="@+id/companyDetailECCTable" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Overview: "
+                android:id="@+id/companyDetailOverview"
+                android:layout_below="@+id/companyDetailName"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="32dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Website: "
+                android:id="@+id/companyDetailWebsite"
+                android:layout_marginTop="32dp"
+                android:layout_below="@+id/companyDetailOverview"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Majors: "
+                android:id="@+id/companyDetailMajors"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Position Types: "
+                android:id="@+id/companyDetailPositionTypes"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Degree Levels: "
+                android:id="@+id/companyDetailDegreeLevels"
+                android:layout_marginTop="16dp" />
+
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Company Name: "
-            android:id="@+id/companyDetailName"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Table: "
-            android:id="@+id/companyDetailECCTable" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Overview: "
-            android:id="@+id/companyDetailOverview"
-            android:layout_below="@+id/companyDetailName"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="32dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Website: "
-            android:id="@+id/companyDetailWebsite"
-            android:layout_marginTop="32dp"
-            android:layout_below="@+id/companyDetailOverview"
-            android:layout_alignParentLeft="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Majors: "
-            android:id="@+id/companyDetailMajors"
-            android:layout_marginTop="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Position Types: "
-            android:id="@+id/companyDetailPositionTypes"
-            android:layout_marginTop="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Degree Levels: "
-            android:id="@+id/companyDetailDegreeLevels"
-            android:layout_marginTop="16dp" />
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

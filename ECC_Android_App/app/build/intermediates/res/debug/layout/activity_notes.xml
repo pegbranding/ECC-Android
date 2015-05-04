@@ -34,19 +34,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Interviews"
-                        android:id="@+id/interviewsCheckbox" />
+                        android:id="@+id/interviewsCheckbox"
+                        android:checked="true" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Info Sessions"
-                        android:id="@+id/infoCheckbox" />
+                        android:id="@+id/infoCheckbox"
+                        android:checked="true" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Deadlines"
-                        android:id="@+id/deadlinesCheckbox" />
+                        android:id="@+id/deadlinesCheckbox"
+                        android:checked="true" />
                 </LinearLayout>
 
                 <Button

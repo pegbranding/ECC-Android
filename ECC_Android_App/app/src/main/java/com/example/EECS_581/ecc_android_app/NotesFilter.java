@@ -28,7 +28,7 @@ public class NotesFilter extends Filter {
         if (constraint == null || constraint.length() == 0) {
             result.values = allNotes;
             result.count = allNotes.size();
-        } else {
+        } else if (constraint.equals("interviews")){
             //TODO filters
             result.values = allNotes;
             result.count = allNotes.size();

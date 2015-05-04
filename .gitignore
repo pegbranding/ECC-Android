@@ -1,19 +1,19 @@
 .DS_Store
 
-*.apk
-*.ap
-*.dex
-*.class
-bin/
-gen/
-local.properties
-Thumbs.db
-.DS_Store
-.classpath
-.project
-.iml
-.idea
-.gradle
-build/
+ECC_Android_App/*.apk
+ECC_Android_App/*.ap
+ECC_Android_App/*.dex
+ECC_Android_App/*.class
+ECC_Android_App/bin/
+ECC_Android_App/gen/
+ECC_Android_App/local.properties
+ECC_Android_App/Thumbs.db
+ECC_Android_App/.DS_Store
+ECC_Android_App/.classpath
+ECC_Android_App/.project
+ECC_Android_App/.iml
+ECC_Android_App/.idea
+ECC_Android_App/.gradle
+ECC_Android_App/build/
 
 ECC_Android_App/build/
