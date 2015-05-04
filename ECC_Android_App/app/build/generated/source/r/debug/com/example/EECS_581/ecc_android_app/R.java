@@ -158,8 +158,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shadow=0x7f02000f;
     }
     public static final class id {
-        public static final int action_example=0x7f060043;
-        public static final int action_settings=0x7f060044;
+        public static final int action_example=0x7f060044;
+        public static final int action_settings=0x7f060045;
         public static final int checkBox=0x7f060012;
         public static final int companyDetailDegreeLevels=0x7f06000f;
         public static final int companyDetailECCTable=0x7f06000a;
@@ -206,6 +206,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int noteTextArea=0x7f060032;
         public static final int noteTitleEditView=0x7f060014;
         public static final int noteTitleTextView=0x7f060013;
+        public static final int notesBody=0x7f060042;
         public static final int notesListScreen=0x7f06002e;
         public static final int notesListView=0x7f060030;
         public static final int notesViewFlipper=0x7f06002d;
@@ -215,7 +216,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f060001;
         public static final int saveNoteButton=0x7f060017;
         public static final int selected_view=0x7f060005;
-        public static final int slidingmenumain=0x7f060042;
+        public static final int slidingmenumain=0x7f060043;
         public static final int tableNum=0x7f06003a;
         public static final int text1=0x7f060022;
         public static final int text2=0x7f060023;
@@ -245,8 +246,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int get_password=0x7f03000a;
         public static final int leftmenu=0x7f03000b;
         public static final int leftmenufragment=0x7f03000c;
-        public static final int register=0x7f03000d;
-        public static final int slidingmenumain=0x7f03000e;
+        public static final int notes_list_row_item=0x7f03000d;
+        public static final int register=0x7f03000e;
+        public static final int slidingmenumain=0x7f03000f;
     }
     public static final class menu {
         public static final int company_list=0x7f0b0000;
@@ -280,21 +282,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int navigation_drawer_close=0x7f090013;
         public static final int navigation_drawer_open=0x7f090014;
         public static final int noteArchiveFilename=0x7f090015;
-        public static final int noteRecordSeparator=0x7f090016;
-        public static final int noteSeparatorMarker=0x7f090017;
-        public static final int note_body=0x7f090018;
-        public static final int note_title=0x7f090019;
-        public static final int save_note=0x7f09001a;
-        public static final int tab1_name=0x7f09001b;
-        public static final int tab2_name=0x7f09001c;
-        public static final int tab3_name=0x7f09001d;
-        public static final int title_activity_company_detail=0x7f09001e;
-        public static final int title_activity_company_list=0x7f09001f;
-        public static final int title_activity_map=0x7f090020;
-        public static final int title_activity_notes=0x7f090021;
-        public static final int title_section1=0x7f090022;
-        public static final int title_section2=0x7f090023;
-        public static final int title_section3=0x7f090024;
+        public static final int note_body=0x7f090016;
+        public static final int note_title=0x7f090017;
+        public static final int save_note=0x7f090018;
+        public static final int tab1_name=0x7f090019;
+        public static final int tab2_name=0x7f09001a;
+        public static final int tab3_name=0x7f09001b;
+        public static final int title_activity_company_detail=0x7f09001c;
+        public static final int title_activity_company_list=0x7f09001d;
+        public static final int title_activity_map=0x7f09001e;
+        public static final int title_activity_notes=0x7f09001f;
+        public static final int title_section1=0x7f090020;
+        public static final int title_section2=0x7f090021;
+        public static final int title_section3=0x7f090022;
     }
     public static final class style {
         /**  Customize your theme here. 

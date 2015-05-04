@@ -28,6 +28,9 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.ActionBar;
+import android.support.v4.widget.DrawerLayout;
+import android.view.MotionEvent;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -61,9 +64,13 @@ public class MainActivity extends SlidingFragmentActivity {
     
     private SlidingMenu leftMenu;
 
+    private DrawerLayout mDrawer;
+
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         setBehindContentView(R.layout.leftmenu);
         initSlidingMenu();
         InitImageView();
@@ -93,10 +100,18 @@ public class MainActivity extends SlidingFragmentActivity {
         fragmentTransaction.commit();
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
     }
 
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                toggle();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void InitTextView(){
         t1 = (TextView) findViewById(R.id.text1);
