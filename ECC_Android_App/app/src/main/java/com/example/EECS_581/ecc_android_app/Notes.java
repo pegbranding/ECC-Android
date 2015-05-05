@@ -80,6 +80,10 @@ public class Notes extends Fragment {
 
     private KeyListener mainKeyListener;//The main key listener, used to re-enable edittext fields.
 
+    boolean toEdit = false;
+    String originalTitle;
+    String originalBody;
+
     View view;
     public static NotesArrayAdapter notesAdapter;
 
@@ -210,12 +214,13 @@ public class Notes extends Fragment {
         editNoteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //First save the original note contents, in case edits are discarded.
-                String originalTitle = noteTitle.getText().toString();
-                String originalBody = noteBody.getText().toString();
+                originalTitle = noteTitle.getText().toString();
+                originalBody = noteBody.getText().toString();
 
                 //Then switch to "Edit" mode by dis/enabling the proper fields and buttons, making
                 // them visible and capable of interaction.
                 switchNoteViewMode("Edit");
+                toEdit = true;
             }
         });
 
@@ -249,16 +254,26 @@ public class Notes extends Fragment {
 
             JSONArray arr = getNotes();
 
+            if (toEdit) {
+                deleteNote(originalTitle, originalBody);
 
-            FileOutputStream noteArchiveOutput = new FileOutputStream(noteArchiveDataFile);
+                toEdit = false;
+                originalTitle="";
+                originalBody="";
+            }
+
             JSONObject newNote = new JSONObject();
             newNote.put("title", title);
             newNote.put("body", body);
             newNote.put("company_name", company_name);
-            newNote.put("type",type);
+            newNote.put("type", type);
             arr.put(newNote);
+
+
             JSONObject container = new JSONObject();
             container.put("notesArray", arr);
+
+            FileOutputStream noteArchiveOutput = new FileOutputStream(noteArchiveDataFile);
             noteArchiveOutput.write(container.toString().getBytes());
 
             Note n = new Note(title,body,company_name,type);
@@ -305,6 +320,14 @@ public class Notes extends Fragment {
             for (int j = 0; j < notesList.size(); j++) {
                 if (notesList.get(j).getTitle().equals(title) && notesList.get(j).getBody().equals(body)) {
                     notesList.remove(j);
+                    notesAdapter.notifyDataSetChanged();
+                    break;
+                }
+            }
+
+            for (int j = 0; j < NotesArrayAdapter.allNotesArray.size(); j++) {
+                if (NotesArrayAdapter.allNotesArray.get(j).getTitle().equals(title) && NotesArrayAdapter.allNotesArray.get(j).getBody().equals(body)) {
+                    NotesArrayAdapter.allNotesArray.remove(j);
                     notesAdapter.notifyDataSetChanged();
                     break;
                 }
@@ -526,10 +549,10 @@ public class Notes extends Fragment {
         }
 
         protected void setupCheckBoxes() {
-            CheckBox interviews = (CheckBox) view.findViewById (R.id.interviewsCheckbox);
+            CheckBox interviews = (CheckBox) view.findViewById(R.id.interviewsCheckbox);
             interviews.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     System.out.println("interviews check is now: " + isChecked);
                     interviewsCheckbox = isChecked;
                     setFilter();

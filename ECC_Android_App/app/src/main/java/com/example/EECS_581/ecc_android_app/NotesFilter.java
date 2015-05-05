@@ -32,7 +32,6 @@ public class NotesFilter extends Filter {
         } else {
             for (int i = 0; i < original.size(); i++) {
                 final Note n = original.get(i);
-                System.out.println("Type: " + n.getType());
                 if(n.getType().equals("Interview") && constraintString.contains("interviews")) {
                     filtered.add(n);
                 }
